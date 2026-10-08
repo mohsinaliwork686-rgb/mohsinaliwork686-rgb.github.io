@@ -365,12 +365,38 @@ dialog[open] { animation: rise 220ms cubic-bezier(0.2, 0.9, 0.3, 1); }
 }
 
 .projects { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
-.projects li { border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; }
-.projects a, .projects strong { color: var(--text); font-weight: 600; font-size: 1.05rem; }
-.projects a { text-underline-offset: 4px; }
-.projects a:hover { color: var(--pink); }
+/* Direct children only: the highlight bullets inside a card must not become cards too. */
+.projects > li { border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; }
+.project-name { color: var(--text); font-weight: 600; font-size: 1.05rem; }
+a.project-name { text-underline-offset: 4px; }
+a.project-name:hover { color: var(--pink); }
 .projects p { margin: 6px 0 8px; font-size: 0.97rem; }
-.tags { color: var(--text-3); font-size: 0.85rem; }
+.tags { display: block; color: var(--text-3); font-size: 0.85rem; }
+
+/* Concrete highlights under each project: what it does that is worth knowing. */
+.highlights { margin: 4px 0 10px; padding-left: 18px; list-style: disc; color: var(--text-2); font-size: 0.95rem; }
+.highlights li { margin-bottom: 6px; }
+.highlights li::marker { color: var(--orange); }
+.dialog-body code {
+  font-family: "Courier New", Courier, monospace; font-size: 0.92em;
+  background: rgba(255, 255, 255, 0.07); padding: 1px 5px; border-radius: 4px;
+}
+
+/* A link to another section, styled as a quiet text button. */
+.more {
+  margin-top: 10px;
+  background: none; border: 0; padding: 4px 0; cursor: pointer;
+  color: var(--pink); font: inherit; font-size: 0.93rem;
+  text-decoration: underline; text-underline-offset: 4px;
+  text-decoration-color: rgba(228, 165, 202, 0.4);
+}
+.more:hover { text-decoration-color: var(--pink); }
+.dialog-foot { margin-top: 22px; }
+
+.shipped { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.shipped a { color: var(--text); font-weight: 600; text-underline-offset: 4px; }
+.shipped a:hover { color: var(--pink); }
+.shipped span { color: var(--text-3); font-size: 0.92rem; margin-left: 6px; }
 
 .role { margin-top: 22px; }
 .role-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; align-items: baseline; }
