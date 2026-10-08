@@ -63,9 +63,16 @@ assets/device-reference.*  the case photograph (PNG original, WebP for speed)
 tests/                     the verification suite
 ```
 
-## Still to confirm
+## Keeping it current
 
-- **LinkedIn link** — taken from the CV as `linkedin.com/in/Mohsinali`. Check it opens the
-  right profile.
-- **Client names** — the healthcare work is described without naming the clients. Add them
-  only once you are sure you are allowed to name them publicly.
+After each weekly project ships:
+
+1. **Projects** (`dialog#work` in `index.html`): add a card for the new project, with two or
+   three highlights that are facts and results, not adjectives.
+2. **In progress** (`dialog#progress`): move the "Up next" project into "Shipped", and name
+   the next one.
+3. Run `npx playwright test`.
+4. Push to `main`. The workflow runs the same checks, and only deploys if they pass.
+
+The keys stay as they are: each one already has its own destination, and a test fails if
+two of them ever share one.
