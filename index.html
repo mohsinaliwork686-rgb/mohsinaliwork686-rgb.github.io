@@ -12,13 +12,14 @@
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
+  <p class="sr-only" role="status" data-announce></p>
 
   <header class="site-header">
     <div class="container bar">
       <a class="wordmark" href="#top" aria-label="Mohsin, home">mohsin<span class="dot">.</span></a>
       <nav aria-label="Sections">
         <ul>
-          <li><button type="button" data-open="work">Work</button></li>
+          <li><button type="button" data-open="work">Projects</button></li>
           <li><button type="button" data-open="about">About</button></li>
           <li><button type="button" data-open="experience">Experience</button></li>
           <li><button type="button" data-open="skills">Skills</button></li>
@@ -56,17 +57,21 @@
             <span class="sr-only" data-title-full>Mohsin's portfolio</span>
             <span aria-hidden="true"><span data-title-typed>Mohsin's portfolio</span><span class="caret"></span></span>
           </h2>
-          <p class="screen-desc" data-desc>Backend systems. Cloud pipelines. Tools for LLM apps.</p>
+          <p class="screen-desc" data-screen-desc>Backend systems. Cloud pipelines. Tools for LLM apps.</p>
         </div>
 
         <div class="keys" data-keys>
+          <!--
+            Every key goes somewhere different. The template sent eleven keys to five places,
+            so most of them repeated each other; each one now earns its spot.
+          -->
           <!-- top row -->
-          <button class="key" type="button" data-open="work" data-title="Selected work" data-desc="Open-source tools, and the systems I build at work."
+          <button class="key" type="button" data-open="work" data-title="Projects" data-desc="Open-source tools I build in public, with code and results."
             style="--i:0; --cx:379; --cy:590; --w:156; --h:130; --top:#EC6426; --base:#AD4017; --ink:#66271B"
-            aria-label="P: Selected work">
-            <span class="face"><span class="letter">P</span><span class="sub">Selected work</span></span>
+            aria-label="P: Projects">
+            <span class="face"><span class="letter">P</span><span class="sub">Projects</span></span>
           </button>
-          <button class="key" type="button" data-open="about" data-title="About me" data-desc="Backend and cloud engineer, currently at SoftBuilds."
+          <button class="key" type="button" data-open="about" data-title="About me" data-desc="Backend and cloud engineer at SoftBuilds."
             style="--i:1; --cx:580; --cy:580; --w:156; --h:130; --top:#F8A91F; --base:#BC7512; --ink:#66271B"
             aria-label="O: About me">
             <span class="face"><span class="letter">O</span><span class="sub">About me</span></span>
@@ -81,10 +86,10 @@
             aria-label="T: Skills">
             <span class="face"><span class="letter">T</span><span class="sub">Skills</span></span>
           </button>
-          <button class="key" type="button" data-open="work" data-title="Explore" data-desc="Browse the projects, with links to the code."
+          <button class="key" type="button" data-open="featured" data-title="Featured work" data-desc="Healthcare order fulfilment for LabCorp, at SoftBuilds."
             style="--i:4; --cx:1184; --cy:548; --w:156; --h:130; --top:#72AC43; --base:#487A26; --ink:#66271B"
-            aria-label="F: Explore the projects">
-            <span class="face"><span class="letter">F</span><span class="sub">Explore</span></span>
+            aria-label="F: Featured work">
+            <span class="face"><span class="letter">F</span><span class="sub">Featured</span></span>
           </button>
 
           <!--
@@ -95,31 +100,31 @@
             Brief values, for reference: 355,783  479,776  602,770  728,763  852,756.
             The long key moves down 5px for the same reason: brief value 1135,745.
           -->
-          <button class="key small" type="button" data-open="about" data-title="A little about me" data-desc="Where I work, what I build, and what I am learning."
+          <button class="key small" type="button" data-open="other" data-title="Other work" data-desc="E-commerce, a dashboard and learning games, at Flippin."
             style="--i:5; --cx:356; --cy:787; --w:98; --h:108; --top:#E4A5CA; --base:#B76F9B; --ink:#66271B"
-            aria-label="O: A little about me">
-            <span class="face"><span class="letter">O</span><span class="sub">About me</span></span>
+            aria-label="O: Other work">
+            <span class="face"><span class="letter">O</span><span class="sub">Other work</span></span>
           </button>
-          <button class="key small" type="button" data-open="experience" data-title="My career so far" data-desc="Two roles, from web development to backend and cloud."
+          <a class="key small" href="https://www.linkedin.com/in/mohsin-ali-63b459293" target="_blank" rel="me noopener" data-title="LinkedIn" data-desc="My profile and full work history."
             style="--i:6; --cx:480; --cy:781; --w:98; --h:108; --top:#66271B; --base:#40150E; --ink:#FDE3CF"
-            aria-label="L: My career so far">
-            <span class="face"><span class="letter">L</span><span class="sub">Career</span></span>
-          </button>
-          <button class="key small" type="button" data-open="skills" data-title="My toolkit" data-desc="Languages, frameworks, cloud and databases."
-            style="--i:7; --cx:603; --cy:777; --w:98; --h:108; --top:#EC6426; --base:#AD4017; --ink:#66271B"
-            aria-label="I: My toolkit">
-            <span class="face"><span class="letter">I</span><span class="sub">Toolkit</span></span>
-          </button>
-          <a class="key small" href="#contact" data-title="Say hello" data-desc="Email is the fastest way to reach me."
-            style="--i:8; --cx:728; --cy:769; --w:98; --h:108; --top:#F8A91F; --base:#BC7512; --ink:#66271B"
-            aria-label="O: Say hello, go to contact">
-            <span class="face"><span class="letter">O</span><span class="sub">Say hello</span></span>
+            aria-label="L: LinkedIn, opens in a new tab">
+            <span class="face"><span class="letter">L</span><span class="sub">LinkedIn</span></span>
           </a>
-          <button class="key small" type="button" data-open="work" data-title="Explore my portfolio" data-desc="Everything I have built in public, in one place."
-            style="--i:9; --cx:852; --cy:764; --w:98; --h:108; --top:#E4A5CA; --base:#B76F9B; --ink:#66271B"
-            aria-label="Portfolio: Explore my portfolio">
-            <span class="face"><span class="letter star" aria-hidden="true">&#10022;</span><span class="sub">Portfolio</span></span>
+          <button class="key small" type="button" data-open="progress" data-title="In progress" data-desc="One finished project a week, built in public."
+            style="--i:7; --cx:603; --cy:777; --w:98; --h:108; --top:#EC6426; --base:#AD4017; --ink:#66271B"
+            aria-label="I: In progress">
+            <span class="face"><span class="letter">I</span><span class="sub">In progress</span></span>
           </button>
+          <button class="key small" type="button" data-copy-email="mohsin.ali.work686@gmail.com" data-title="Copy email" data-desc="Copies my address, ready to paste."
+            style="--i:8; --cx:728; --cy:769; --w:98; --h:108; --top:#F8A91F; --base:#BC7512; --ink:#66271B"
+            aria-label="O: Copy my email address">
+            <span class="face"><span class="letter">O</span><span class="sub">Copy email</span></span>
+          </button>
+          <a class="key small" href="https://github.com/mohsinaliwork686-rgb" target="_blank" rel="me noopener" data-title="Explore my portfolio" data-desc="Every project on GitHub, with its code and tests."
+            style="--i:9; --cx:852; --cy:764; --w:98; --h:108; --top:#E4A5CA; --base:#B76F9B; --ink:#66271B"
+            aria-label="GitHub: explore my portfolio, opens in a new tab">
+            <span class="face"><span class="letter star" aria-hidden="true">&#10022;</span><span class="sub">GitHub</span></span>
+          </a>
           <a class="key wide" href="#contact" data-title="Let's talk" data-desc="Roles, projects or questions. Email me."
             style="--i:10; --cx:1135; --cy:750; --w:374; --h:112; --top:#252525; --base:#101010; --ink:#FFFFFF"
             aria-label="Let's talk, go to contact">
@@ -145,7 +150,7 @@
             <a class="email" href="mailto:mohsin.ali.work686@gmail.com">mohsin.ali.work686@gmail.com <span aria-hidden="true">&#8599;</span></a>
           </p>
           <p class="contact-links secondary">
-            <a href="https://www.linkedin.com/in/Mohsinali" rel="me noopener" target="_blank">LinkedIn</a>
+            <a href="https://www.linkedin.com/in/mohsin-ali-63b459293" rel="me noopener" target="_blank">LinkedIn</a>
             <a href="https://github.com/mohsinaliwork686-rgb" rel="me noopener" target="_blank">GitHub</a>
           </p>
         </div>
@@ -161,7 +166,7 @@
   <dialog id="work" aria-labelledby="work-title">
     <div class="dialog-body">
       <header class="dialog-head">
-        <h2 id="work-title">Selected work</h2>
+        <h2 id="work-title">Projects</h2>
         <button type="button" class="close" data-close>Close</button>
       </header>
       <p class="dialog-lede">Open-source projects I am building in public, one finished project a week, and the systems I build at work.</p>
@@ -169,18 +174,33 @@
       <h3>Open source</h3>
       <ul class="projects">
         <li>
-          <a href="https://github.com/mohsinaliwork686-rgb/promptlint" target="_blank" rel="noopener">promptlint</a>
-          <p>A linter for LLM prompt templates. Catches broken placeholders, leaked API keys and undelimited user input before they reach production.</p>
-          <span class="tags">Python · zero dependencies</span>
+          <a class="project-name" href="https://github.com/mohsinaliwork686-rgb/promptlint" target="_blank" rel="noopener">promptlint</a>
+          <p>A linter for LLM prompt templates.</p>
+          <ul class="highlights">
+            <li>Finds the bugs that only show up in production: a JSON example that breaks <code>.format()</code>, a variable the code never passes, an API key left in a prompt, user input pasted straight into instructions.</li>
+            <li>Reads Python, YAML and Markdown, reports the exact line and column, and has an autofix that checks the text is still where it expects before changing anything.</li>
+            <li>No runtime dependencies. Tested on Linux, macOS and Windows across three Python versions.</li>
+          </ul>
+          <span class="tags">Python · static analysis</span>
         </li>
         <li>
-          <a href="https://github.com/mohsinaliwork686-rgb/ragsweep" target="_blank" rel="noopener">ragsweep</a>
-          <p>Measures which retrieval settings actually find the right passage, by sweeping chunk size, overlap, embeddings and BM25 against labelled questions.</p>
+          <a class="project-name" href="https://github.com/mohsinaliwork686-rgb/ragsweep" target="_blank" rel="noopener">ragsweep</a>
+          <p>Measures which retrieval settings actually find the right passage.</p>
+          <ul class="highlights">
+            <li>Sweeps chunk size, overlap, embedding models and BM25 keyword search against a labelled question set, and ranks every combination.</li>
+            <li>On its example corpus, keyword search matched embeddings on four of five question types. Embeddings only pulled ahead when a question's wording did not match the document.</li>
+            <li>Shares work across the sweep, so 54 runs take 1m 41s the first time and 1.3s after that.</li>
+          </ul>
           <span class="tags">Python · embeddings · evaluation</span>
         </li>
         <li>
-          <a href="https://github.com/mohsinaliwork686-rgb/contextlab" target="_blank" rel="noopener">contextlab</a>
-          <p>Plans a context window before it overflows: what fits, what gets trimmed, and what it costs.</p>
+          <a class="project-name" href="https://github.com/mohsinaliwork686-rgb/contextlab" target="_blank" rel="noopener">contextlab</a>
+          <p>Plans a context window before it overflows.</p>
+          <ul class="highlights">
+            <li>Shows what fits in a model's window, what each part of the request costs, and exactly where an over-long request gets cut.</li>
+            <li>Runs entirely in the browser. Token counts that are estimates are labelled as estimates, never passed off as exact.</li>
+            <li>Any setup can be shared as a compressed link.</li>
+          </ul>
           <span class="tags">TypeScript · Next.js</span>
         </li>
       </ul>
@@ -188,21 +208,109 @@
       <h3>At work</h3>
       <ul class="projects">
         <li>
-          <strong>Healthcare order-fulfilment platform</strong>
-          <p>ASP.NET Core and Azure services running order intake, lab routing, shipping and refunds, with encryption at rest and an event-replay audit trail.</p>
+          <strong class="project-name">Healthcare order fulfilment</strong>
+          <p>The platform and pipelines behind at-home lab testing fulfilled through LabCorp, for Ditek and Medzah.</p>
           <span class="tags">SoftBuilds · C# · Python · Azure</span>
+          <button type="button" class="more" data-open="featured">Read the case study <span aria-hidden="true">&rarr;</span></button>
         </li>
         <li>
-          <strong>E-commerce platform</strong>
-          <p>A MERN storefront with Braintree payments, and a Next.js admin dashboard with data visualisations.</p>
+          <strong class="project-name">E-commerce and learning platforms</strong>
+          <p>A MERN storefront with Braintree payments, a Next.js admin dashboard, and a gamified learning app.</p>
           <span class="tags">Flippin Technologies · React · Node.js</span>
-        </li>
-        <li>
-          <strong>Gamified learning platform</strong>
-          <p>Progressive challenges and educational mini-games, with JWT authentication and role-based access.</p>
-          <span class="tags">Flippin Technologies · MongoDB</span>
+          <button type="button" class="more" data-open="other">See the projects <span aria-hidden="true">&rarr;</span></button>
         </li>
       </ul>
+
+      <p class="dialog-foot"><button type="button" class="more" data-open="progress">See what I am building now <span aria-hidden="true">&rarr;</span></button></p>
+    </div>
+  </dialog>
+
+  <dialog id="featured" aria-labelledby="featured-title">
+    <div class="dialog-body">
+      <header class="dialog-head">
+        <h2 id="featured-title">Healthcare order fulfilment</h2>
+        <button type="button" class="close" data-close>Close</button>
+      </header>
+      <p class="dialog-lede">At SoftBuilds: order processing and kit fulfilment for at-home lab testing. One platform serving two operating models on shared infrastructure, both fulfilled through LabCorp: <strong>Ditek</strong>, for business site-based testing, and <strong>Medzah</strong>, for direct-to-consumer testing at home.</p>
+
+      <h3>The platform</h3>
+      <ul class="highlights">
+        <li>Built the ASP.NET Core AtHome platform with ShopPro and LabCorp routing integrations, taking an order from intake to a dispatched kit.</li>
+        <li>Owned the Azure microservices behind LabCorp order fulfilment for both Ditek and Medzah.</li>
+      </ul>
+
+      <h3>The pipeline</h3>
+      <ul class="highlights">
+        <li>Orchestrated order intake with Python Azure Durable Functions: CSV ingestion, requisition generation, shipping labels, returns and refunds.</li>
+        <li>Drove multi-stage asset generation with Node.js Durable Function orchestrators on scheduled triggers.</li>
+        <li>Integrated Endicia and FedEx to automate shipping labels, tracking and logistics handoffs.</li>
+      </ul>
+
+      <h3>Security and audit</h3>
+      <ul class="highlights">
+        <li>HIPAA-aligned handling of patient data, with Fernet encryption at rest and secure PHI layers across the pipeline.</li>
+        <li>A blob journaling and event-replay system on Azure Storage, giving a full audit trail and point-in-time recovery.</li>
+      </ul>
+
+      <h3>Documents</h3>
+      <ul class="highlights">
+        <li>A reusable .NET service for Blob Storage access, SAS URLs, and PDF merging, compression and transformation.</li>
+        <li>HTML-to-PDF and image-to-PDF pipelines, and a TRF overlay engine that stamps order data onto requisition templates, removing manual document preparation.</li>
+      </ul>
+
+      <h3>Delivery</h3>
+      <ul class="highlights">
+        <li>CI/CD in Bitbucket Pipelines across development, UAT and production.</li>
+      </ul>
+
+      <p class="tags">C# · ASP.NET Core · Python · Node.js · Azure Durable Functions · Azure Storage · Bitbucket Pipelines</p>
+    </div>
+  </dialog>
+
+  <dialog id="other" aria-labelledby="other-title">
+    <div class="dialog-body">
+      <header class="dialog-head">
+        <h2 id="other-title">Other work</h2>
+        <button type="button" class="close" data-close>Close</button>
+      </header>
+      <p class="dialog-lede">At Flippin Technologies, January to July 2025.</p>
+      <ul class="projects">
+        <li>
+          <strong class="project-name">E-commerce platform</strong>
+          <p>A full-stack MERN store with end-to-end purchase flows, product management and Braintree payments.</p>
+          <span class="tags">MongoDB · Express · React · Node.js</span>
+        </li>
+        <li>
+          <strong class="project-name">Admin dashboard</strong>
+          <p>A responsive dashboard with interactive data visualisations.</p>
+          <span class="tags">Next.js · TypeScript · Tailwind CSS · shadcn/ui</span>
+        </li>
+        <li>
+          <strong class="project-name">Gamified learning platform</strong>
+          <p>Progressive, activity-driven challenges, with JWT authentication and role-based access, saving progress in MongoDB and local storage. Its mini-games include a Sketchbook, a Spelling Bee using the Speech Synthesis API, a shape-matching game built on React DnD with Canvas Confetti, and a reflex game built on Kaplay.</p>
+          <span class="tags">React · MongoDB · JWT</span>
+        </li>
+      </ul>
+    </div>
+  </dialog>
+
+  <dialog id="progress" aria-labelledby="progress-title">
+    <div class="dialog-body">
+      <header class="dialog-head">
+        <h2 id="progress-title">In progress</h2>
+        <button type="button" class="close" data-close>Close</button>
+      </header>
+      <p class="dialog-lede">I am building in public: one finished project a week, each one planned before it is written, then tested, documented and published.</p>
+
+      <h3>Shipped</h3>
+      <ul class="shipped">
+        <li><a href="https://github.com/mohsinaliwork686-rgb/promptlint" target="_blank" rel="noopener">promptlint</a> <span>a linter for LLM prompt templates</span></li>
+        <li><a href="https://github.com/mohsinaliwork686-rgb/ragsweep" target="_blank" rel="noopener">ragsweep</a> <span>measures which retrieval settings work</span></li>
+        <li><a href="https://github.com/mohsinaliwork686-rgb/contextlab" target="_blank" rel="noopener">contextlab</a> <span>plans a context window before it overflows</span></li>
+      </ul>
+
+      <h3>Up next</h3>
+      <p><strong>llm-router</strong> — routes model calls by cost, retries when a provider fails, and enforces a hard spending cap.</p>
     </div>
   </dialog>
 
@@ -212,7 +320,7 @@
         <h2 id="about-title">About</h2>
         <button type="button" class="close" data-close>Close</button>
       </header>
-      <p>I'm a software engineer at SoftBuilds, where I build the backend for a healthcare order-fulfilment platform: ASP.NET Core services, Python and Node.js pipelines on Azure Durable Functions, and the encryption and audit trail that patient data needs.</p>
+      <p>I'm a software engineer at SoftBuilds, where I've built the backend for a healthcare order-fulfilment platform serving LabCorp testing: ASP.NET Core services, Python and Node.js pipelines on Azure Durable Functions, and the encryption and audit trail that patient data needs.</p>
       <p>Before that I was a web developer at Flippin Technologies, building a MERN e-commerce platform and a gamified learning app.</p>
       <p>Outside work I build open-source tools for LLM apps, one finished project a week. I studied Computer Science at UET Lahore.</p>
     </div>
@@ -231,13 +339,12 @@
           <span>August 2025 – present</span>
         </div>
         <ul>
-          <li>Built the ASP.NET Core platform behind end-to-end order processing and kit fulfilment, with routing integrations to lab and retail partners.</li>
-          <li>Implemented Fernet encryption at rest and secure handling of patient data across the order pipeline.</li>
-          <li>Built a blob journaling and event-replay system on Azure Storage, for auditability and point-in-time recovery.</li>
-          <li>Orchestrated order intake with Python Azure Durable Functions: CSV ingestion, requisitions, shipping labels, returns and refunds.</li>
-          <li>Integrated Endicia and FedEx to automate shipping labels, tracking and logistics handoffs.</li>
+          <li>Built the ASP.NET Core AtHome platform and owned the Azure microservices behind LabCorp order fulfilment for Ditek and Medzah.</li>
+          <li>Orchestrated order intake with Python Azure Durable Functions, and integrated Endicia and FedEx shipping.</li>
+          <li>Implemented HIPAA-aligned encryption at rest and an event-replay audit trail on Azure Storage.</li>
           <li>Ran CI/CD in Bitbucket Pipelines across development, UAT and production.</li>
         </ul>
+        <button type="button" class="more" data-open="featured">Read the case study <span aria-hidden="true">&rarr;</span></button>
       </article>
 
       <article class="role">
@@ -246,10 +353,10 @@
           <span>January 2025 – July 2025</span>
         </div>
         <ul>
-          <li>Built a MERN e-commerce platform with Braintree payments.</li>
-          <li>Built a responsive admin dashboard in Next.js, TypeScript and Tailwind CSS.</li>
-          <li>Built a gamified learning platform with JWT authentication, role-based access and a set of educational mini-games.</li>
+          <li>Built a MERN e-commerce platform with Braintree payments, and a Next.js admin dashboard.</li>
+          <li>Built a gamified learning platform with JWT authentication, role-based access and educational mini-games.</li>
         </ul>
+        <button type="button" class="more" data-open="other">See the projects <span aria-hidden="true">&rarr;</span></button>
       </article>
 
       <article class="role">
