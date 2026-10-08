@@ -59,6 +59,27 @@ test.describe("layout", () => {
     }
   })
 
+  test("never sends two keys to the same place", async ({ page }) => {
+    // Every key should earn its spot. The template sent eleven keys to five destinations,
+    // so most of them repeated each other; this keeps that from creeping back.
+    await page.goto("/")
+    const destinations = await page.locator(".key").evaluateAll((keys) =>
+      keys.map((k) =>
+        k.dataset.open ? `section:${k.dataset.open}` :
+        k.hasAttribute("data-copy-email") ? "action:copy-email" :
+        `link:${k.getAttribute("href")}`,
+      ),
+    )
+    expect(destinations).toHaveLength(11)
+    expect(new Set(destinations).size).toBe(destinations.length)
+  })
+
+  test("gives each key its own label", async ({ page }) => {
+    await page.goto("/")
+    const labels = await page.locator(".key .sub").allTextContents()
+    expect(new Set(labels).size).toBe(labels.length)
+  })
+
   test("gives each key a full accessible name", async ({ page }) => {
     await page.goto("/")
     const names = await page.locator(".key").evaluateAll((keys) => keys.map((k) => k.getAttribute("aria-label")))
@@ -87,7 +108,7 @@ test.describe("screen typing", () => {
 
   test("cancels unfinished typing when a new key is chosen, never mixing the two", async ({ page }) => {
     await page.goto("/")
-    const first = keyByLabel(page, "P: Selected work")
+    const first = keyByLabel(page, "P: Projects")
     const second = keyByLabel(page, "T: Skills")
     await first.hover()
     await page.waitForTimeout(250)
@@ -151,7 +172,7 @@ test.describe("sections", () => {
     await page.goto("/")
     const keys = page.locator(".key[data-open]")
     const count = await keys.count()
-    expect(count).toBe(9)
+    expect(count).toBe(7)
     for (let i = 0; i < count; i += 1) {
       const key = keys.nth(i)
       const id = await key.getAttribute("data-open")
@@ -184,10 +205,61 @@ test.describe("sections", () => {
     await expect(dialog).toBeHidden()
   })
 
+  test("a link inside one section swaps to another, and focus still returns to the start", async ({ page }) => {
+    await page.goto("/")
+    const trigger = page.locator('nav button[data-open="work"]')
+    await trigger.click()
+    await expect(page.locator("dialog#work")).toBeVisible()
+    await page.locator('dialog#work .more[data-open="featured"]').click()
+    await expect(page.locator("dialog#featured")).toBeVisible()
+    await expect(page.locator("dialog#work")).toBeHidden()
+    await page.keyboard.press("Escape")
+    await expect(page.locator("dialog#featured")).toBeHidden()
+    await expect(trigger).toBeFocused()
+  })
+
+  test("names the clients in the case study", async ({ page }) => {
+    await page.goto("/")
+    await keyByLabel(page, "F: Featured work").click()
+    const dialog = page.locator("dialog#featured")
+    for (const name of ["LabCorp", "Ditek", "Medzah"]) await expect(dialog).toContainText(name)
+  })
+
   test("the contact keys are links to the contact section", async ({ page }) => {
     await page.goto("/")
     await keyByLabel(page, "Let's talk, go to contact").click()
     await expect(page).toHaveURL(/#contact$/)
+  })
+})
+
+test.describe("links and actions", () => {
+  test("LinkedIn and GitHub open the right profiles in a new tab", async ({ page }) => {
+    await page.goto("/")
+    const linkedin = keyByLabel(page, "L: LinkedIn, opens in a new tab")
+    await expect(linkedin).toHaveAttribute("href", "https://www.linkedin.com/in/mohsin-ali-63b459293")
+    await expect(linkedin).toHaveAttribute("target", "_blank")
+    const github = keyByLabel(page, "GitHub: explore my portfolio, opens in a new tab")
+    await expect(github).toHaveAttribute("href", "https://github.com/mohsinaliwork686-rgb")
+    await expect(github).toHaveAttribute("target", "_blank")
+  })
+
+  test("the contact section links to the same LinkedIn profile", async ({ page }) => {
+    await page.goto("/")
+    await expect(page.locator("#contact a", { hasText: "LinkedIn" })).toHaveAttribute(
+      "href", "https://www.linkedin.com/in/mohsin-ali-63b459293",
+    )
+  })
+
+  test("copy email puts the address on the clipboard and says so on the screen", async ({ page, context }) => {
+    await context.grantPermissions(["clipboard-read", "clipboard-write"])
+    await page.goto("/")
+    // The clipboard only accepts writes from a focused page. Under a parallel run a page can
+    // lose focus, which sends the key down its fallback (opening the mail client) instead.
+    await page.bringToFront()
+    await keyByLabel(page, "O: Copy my email address").click()
+    await expect(typed(page)).toHaveText("Email copied", { timeout: 4000 })
+    await expect(page.locator("[data-screen-desc]")).toHaveText("mohsin.ali.work686@gmail.com")
+    expect(await page.evaluate(() => navigator.clipboard.readText())).toBe("mohsin.ali.work686@gmail.com")
   })
 })
 
@@ -234,7 +306,7 @@ test.describe("reduced motion", () => {
 
   test("still opens every section", async ({ page }) => {
     await page.goto("/")
-    await keyByLabel(page, "P: Selected work").click()
+    await keyByLabel(page, "P: Projects").click()
     await expect(page.locator("dialog#work")).toBeVisible()
   })
 })
