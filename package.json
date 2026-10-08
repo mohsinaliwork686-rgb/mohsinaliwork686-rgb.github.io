@@ -1,0 +1,13 @@
+{
+  "name": "portfolio",
+  "private": true,
+  "description": "Mohsin Ali's portfolio: The Portfolio Console.",
+  "scripts": {
+    "serve": "python3 -m http.server 4173",
+    "test": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.64.0"
+  },
+  "type": "module"
+}
