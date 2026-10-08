@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mohsin Ali — Software Engineer</title>
+  <meta name="description" content="Software engineer building backend systems on Azure and .NET, and open-source tools for LLM apps.">
+  <meta name="theme-color" content="#111113">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" as="image" href="assets/device-reference.webp" type="image/webp">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container bar">
+      <a class="wordmark" href="#top" aria-label="Mohsin, home">mohsin<span class="dot">.</span></a>
+      <nav aria-label="Sections">
+        <ul>
+          <li><button type="button" data-open="work">Work</button></li>
+          <li><button type="button" data-open="about">About</button></li>
+          <li><button type="button" data-open="experience">Experience</button></li>
+          <li><button type="button" data-open="skills">Skills</button></li>
+        </ul>
+      </nav>
+      <a class="talk" href="#contact">Let's Talk</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="intro container" id="top">
+      <h1>Hi, I'm <span class="name">Mohsin</span></h1>
+      <p class="lede">Software engineer building backend systems on Azure and .NET, and open-source tools for LLM apps.</p>
+    </section>
+
+    <!--
+      The device. Every overlay is positioned in the photo's own 1536 x 1024 pixel
+      coordinates (--cx, --cy, --w, --h are the placement table from the design brief,
+      unchanged) and converted to percentages in CSS, so the photo, screen and keys scale
+      together and cannot drift apart at any width.
+    -->
+    <div class="container">
+      <figure class="device" aria-labelledby="screen-title">
+        <picture>
+          <source srcset="assets/device-reference.webp" type="image/webp">
+          <img src="assets/device-reference.png" width="1536" height="1024" alt="" decoding="async" fetchpriority="high">
+        </picture>
+
+        <div class="screen">
+          <div class="screen-meta">
+            <span>MOHSIN / SOFTWARE ENGINEER</span>
+            <span class="status" data-status>READY</span>
+          </div>
+          <h2 class="screen-title" id="screen-title">
+            <span class="sr-only" data-title-full>Mohsin's portfolio</span>
+            <span aria-hidden="true"><span data-title-typed>Mohsin's portfolio</span><span class="caret"></span></span>
+          </h2>
+          <p class="screen-desc" data-desc>Backend systems. Cloud pipelines. Tools for LLM apps.</p>
+        </div>
+
+        <div class="keys" data-keys>
+          <!-- top row -->
+          <button class="key" type="button" data-open="work" data-title="Selected work" data-desc="Open-source tools, and the systems I build at work."
+            style="--i:0; --cx:379; --cy:590; --w:156; --h:130; --top:#EC6426; --base:#AD4017; --ink:#66271B"
+            aria-label="P: Selected work">
+            <span class="face"><span class="letter">P</span><span class="sub">Selected work</span></span>
+          </button>
+          <button class="key" type="button" data-open="about" data-title="About me" data-desc="Backend and cloud engineer, currently at SoftBuilds."
+            style="--i:1; --cx:580; --cy:580; --w:156; --h:130; --top:#F8A91F; --base:#BC7512; --ink:#66271B"
+            aria-label="O: About me">
+            <span class="face"><span class="letter">O</span><span class="sub">About me</span></span>
+          </button>
+          <button class="key" type="button" data-open="experience" data-title="Experience" data-desc="SoftBuilds and Flippin Technologies, 2025 to now."
+            style="--i:2; --cx:782; --cy:570; --w:156; --h:130; --top:#FDE3CF; --base:#CAA58A; --ink:#66271B"
+            aria-label="R: Experience">
+            <span class="face"><span class="letter">R</span><span class="sub">Experience</span></span>
+          </button>
+          <button class="key" type="button" data-open="skills" data-title="Skills" data-desc="C#, Python, TypeScript, Azure, and the tools around them."
+            style="--i:3; --cx:982; --cy:559; --w:156; --h:130; --top:#2E573A; --base:#193A23; --ink:#FDE3CF"
+            aria-label="T: Skills">
+            <span class="face"><span class="letter">T</span><span class="sub">Skills</span></span>
+          </button>
+          <button class="key" type="button" data-open="work" data-title="Explore" data-desc="Browse the projects, with links to the code."
+            style="--i:4; --cx:1184; --cy:548; --w:156; --h:130; --top:#72AC43; --base:#487A26; --ink:#66271B"
+            aria-label="F: Explore the projects">
+            <span class="face"><span class="letter">F</span><span class="sub">Explore</span></span>
+          </button>
+
+          <!--
+            lower row. Re-measured against the photo: the brief's centres for these five sit
+            progressively high (by about 8px at the star key), which left each switch's orange
+            contact showing below its cap once the -3.2 degree rotation lifted the right side.
+            The brief asks for a visual check rather than treating its numbers as fixed.
+            Brief values, for reference: 355,783  479,776  602,770  728,763  852,756.
+            The long key moves down 5px for the same reason: brief value 1135,745.
+          -->
+          <button class="key small" type="button" data-open="about" data-title="A little about me" data-desc="Where I work, what I build, and what I am learning."
+            style="--i:5; --cx:356; --cy:787; --w:98; --h:108; --top:#E4A5CA; --base:#B76F9B; --ink:#66271B"
+            aria-label="O: A little about me">
+            <span class="face"><span class="letter">O</span><span class="sub">About me</span></span>
+          </button>
+          <button class="key small" type="button" data-open="experience" data-title="My career so far" data-desc="Two roles, from web development to backend and cloud."
+            style="--i:6; --cx:480; --cy:781; --w:98; --h:108; --top:#66271B; --base:#40150E; --ink:#FDE3CF"
+            aria-label="L: My career so far">
+            <span class="face"><span class="letter">L</span><span class="sub">Career</span></span>
+          </button>
+          <button class="key small" type="button" data-open="skills" data-title="My toolkit" data-desc="Languages, frameworks, cloud and databases."
+            style="--i:7; --cx:603; --cy:777; --w:98; --h:108; --top:#EC6426; --base:#AD4017; --ink:#66271B"
+            aria-label="I: My toolkit">
+            <span class="face"><span class="letter">I</span><span class="sub">Toolkit</span></span>
+          </button>
+          <a class="key small" href="#contact" data-title="Say hello" data-desc="Email is the fastest way to reach me."
+            style="--i:8; --cx:728; --cy:769; --w:98; --h:108; --top:#F8A91F; --base:#BC7512; --ink:#66271B"
+            aria-label="O: Say hello, go to contact">
+            <span class="face"><span class="letter">O</span><span class="sub">Say hello</span></span>
+          </a>
+          <button class="key small" type="button" data-open="work" data-title="Explore my portfolio" data-desc="Everything I have built in public, in one place."
+            style="--i:9; --cx:852; --cy:764; --w:98; --h:108; --top:#E4A5CA; --base:#B76F9B; --ink:#66271B"
+            aria-label="Portfolio: Explore my portfolio">
+            <span class="face"><span class="letter star" aria-hidden="true">&#10022;</span><span class="sub">Portfolio</span></span>
+          </button>
+          <a class="key wide" href="#contact" data-title="Let's talk" data-desc="Roles, projects or questions. Email me."
+            style="--i:10; --cx:1135; --cy:750; --w:374; --h:112; --top:#252525; --base:#101010; --ink:#FFFFFF"
+            aria-label="Let's talk, go to contact">
+            <span class="face"><span class="letter return" aria-hidden="true">&#8629;</span><span class="sub">Let's talk</span></span>
+          </a>
+        </div>
+      </figure>
+    </div>
+
+    <div class="strip" aria-label="Azure microservices, HIPAA-aligned systems, .NET, Python, React, Next.js">
+      <div class="strip-track" aria-hidden="true">
+        <span>Azure microservices</span><span>HIPAA-aligned systems</span><span>.NET</span><span>Python</span><span>React</span><span>Next.js</span>
+        <span>Azure microservices</span><span>HIPAA-aligned systems</span><span>.NET</span><span>Python</span><span>React</span><span>Next.js</span>
+      </div>
+    </div>
+
+    <section class="contact" id="contact" aria-labelledby="contact-title">
+      <div class="container contact-grid">
+        <h2 id="contact-title">Say hello.</h2>
+        <div>
+          <p>Have a role, a project or a question? Email is the fastest way to reach me.</p>
+          <p class="contact-links">
+            <a class="email" href="mailto:mohsin.ali.work686@gmail.com">mohsin.ali.work686@gmail.com <span aria-hidden="true">&#8599;</span></a>
+          </p>
+          <p class="contact-links secondary">
+            <a href="https://www.linkedin.com/in/Mohsinali" rel="me noopener" target="_blank">LinkedIn</a>
+            <a href="https://github.com/mohsinaliwork686-rgb" rel="me noopener" target="_blank">GitHub</a>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">© 2026 Mohsin Ali</div>
+  </footer>
+
+  <!-- Sections. Native dialogs: Escape closes, the page behind is inert, focus is kept inside. -->
+  <dialog id="work" aria-labelledby="work-title">
+    <div class="dialog-body">
+      <header class="dialog-head">
+        <h2 id="work-title">Selected work</h2>
+        <button type="button" class="close" data-close>Close</button>
+      </header>
+      <p class="dialog-lede">Open-source projects I am building in public, one finished project a week, and the systems I build at work.</p>
+
+      <h3>Open source</h3>
+      <ul class="projects">
+        <li>
+          <a href="https://github.com/mohsinaliwork686-rgb/promptlint" target="_blank" rel="noopener">promptlint</a>
+          <p>A linter for LLM prompt templates. Catches broken placeholders, leaked API keys and undelimited user input before they reach production.</p>
+          <span class="tags">Python · zero dependencies</span>
+        </li>
+        <li>
+          <a href="https://github.com/mohsinaliwork686-rgb/ragsweep" target="_blank" rel="noopener">ragsweep</a>
+          <p>Measures which retrieval settings actually find the right passage, by sweeping chunk size, overlap, embeddings and BM25 against labelled questions.</p>
+          <span class="tags">Python · embeddings · evaluation</span>
+        </li>
+        <li>
+          <a href="https://github.com/mohsinaliwork686-rgb/contextlab" target="_blank" rel="noopener">contextlab</a>
+          <p>Plans a context window before it overflows: what fits, what gets trimmed, and what it costs.</p>
+          <span class="tags">TypeScript · Next.js</span>
+        </li>
+      </ul>
+
+      <h3>At work</h3>
+      <ul class="projects">
+        <li>
+          <strong>Healthcare order-fulfilment platform</strong>
+          <p>ASP.NET Core and Azure services running order intake, lab routing, shipping and refunds, with encryption at rest and an event-replay audit trail.</p>
+          <span class="tags">SoftBuilds · C# · Python · Azure</span>
+        </li>
+        <li>
+          <strong>E-commerce platform</strong>
+          <p>A MERN storefront with Braintree payments, and a Next.js admin dashboard with data visualisations.</p>
+          <span class="tags">Flippin Technologies · React · Node.js</span>
+        </li>
+        <li>
+          <strong>Gamified learning platform</strong>
+          <p>Progressive challenges and educational mini-games, with JWT authentication and role-based access.</p>
+          <span class="tags">Flippin Technologies · MongoDB</span>
+        </li>
+      </ul>
+    </div>
+  </dialog>
+
+  <dialog id="about" aria-labelledby="about-title">
+    <div class="dialog-body">
+      <header class="dialog-head">
+        <h2 id="about-title">About</h2>
+        <button type="button" class="close" data-close>Close</button>
+      </header>
+      <p>I'm a software engineer at SoftBuilds, where I build the backend for a healthcare order-fulfilment platform: ASP.NET Core services, Python and Node.js pipelines on Azure Durable Functions, and the encryption and audit trail that patient data needs.</p>
+      <p>Before that I was a web developer at Flippin Technologies, building a MERN e-commerce platform and a gamified learning app.</p>
+      <p>Outside work I build open-source tools for LLM apps, one finished project a week. I studied Computer Science at UET Lahore.</p>
+    </div>
+  </dialog>
+
+  <dialog id="experience" aria-labelledby="experience-title">
+    <div class="dialog-body">
+      <header class="dialog-head">
+        <h2 id="experience-title">Experience</h2>
+        <button type="button" class="close" data-close>Close</button>
+      </header>
+
+      <article class="role">
+        <div class="role-head">
+          <h3>Software Engineer · SoftBuilds</h3>
+          <span>August 2025 – present</span>
+        </div>
+        <ul>
+          <li>Built the ASP.NET Core platform behind end-to-end order processing and kit fulfilment, with routing integrations to lab and retail partners.</li>
+          <li>Implemented Fernet encryption at rest and secure handling of patient data across the order pipeline.</li>
+          <li>Built a blob journaling and event-replay system on Azure Storage, for auditability and point-in-time recovery.</li>
+          <li>Orchestrated order intake with Python Azure Durable Functions: CSV ingestion, requisitions, shipping labels, returns and refunds.</li>
+          <li>Integrated Endicia and FedEx to automate shipping labels, tracking and logistics handoffs.</li>
+          <li>Ran CI/CD in Bitbucket Pipelines across development, UAT and production.</li>
+        </ul>
+      </article>
+
+      <article class="role">
+        <div class="role-head">
+          <h3>Web Developer · Flippin Technologies</h3>
+          <span>January 2025 – July 2025</span>
+        </div>
+        <ul>
+          <li>Built a MERN e-commerce platform with Braintree payments.</li>
+          <li>Built a responsive admin dashboard in Next.js, TypeScript and Tailwind CSS.</li>
+          <li>Built a gamified learning platform with JWT authentication, role-based access and a set of educational mini-games.</li>
+        </ul>
+      </article>
+
+      <article class="role">
+        <div class="role-head">
+          <h3>Bachelor in Computer Science · UET Lahore</h3>
+        </div>
+      </article>
+    </div>
+  </dialog>
+
+  <dialog id="skills" aria-labelledby="skills-title">
+    <div class="dialog-body">
+      <header class="dialog-head">
+        <h2 id="skills-title">Skills</h2>
+        <button type="button" class="close" data-close>Close</button>
+      </header>
+      <dl class="skills">
+        <dt>Languages</dt><dd>C#, Python, JavaScript, TypeScript</dd>
+        <dt>Frameworks</dt><dd>ASP.NET Core, Node.js, Express, Flask, React, Next.js, Tailwind CSS</dd>
+        <dt>Cloud and DevOps</dt><dd>Microsoft Azure, Azure Functions, Azure Durable Functions, Bitbucket Pipelines, REST APIs, Git, Linux</dd>
+        <dt>Databases</dt><dd>SQL Server, MySQL, MongoDB</dd>
+      </dl>
+    </div>
+  </dialog>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
