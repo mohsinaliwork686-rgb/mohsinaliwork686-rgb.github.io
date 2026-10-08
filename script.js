@@ -34,7 +34,7 @@
 
   const typedEl = document.querySelector("[data-title-typed]")
   const fullEl = document.querySelector("[data-title-full]")
-  const descEl = document.querySelector("[data-desc]")
+  const descEl = document.querySelector("[data-screen-desc]")
   const statusEl = document.querySelector("[data-status]")
 
   // One timer and one target. Starting new text always cancels the old timer first, so two
@@ -151,12 +151,16 @@
 
   // ------------------------------------------------------------------------- dialogs
 
+  // The control that opened the first section. Moving from one section to another keeps
+  // it, so closing the last one still hands focus back to where the visitor started.
   let opener = null
+  // Set while swapping one section for another, which happens across the close event.
+  let switchTo = null
 
   function open(id, trigger) {
     const dialog = dialogs.get(id)
     if (!dialog || dialog.open) return
-    opener = trigger
+    if (trigger) opener = trigger
     cancelRestore()
     keys.forEach((k) => k.classList.remove("pop"))
     // showModal makes the rest of the page inert, keeps focus inside, and closes on Escape.
@@ -165,7 +169,18 @@
 
   document.addEventListener("click", (event) => {
     const trigger = event.target.closest("[data-open]")
-    if (trigger) open(trigger.dataset.open, trigger)
+    if (!trigger) return
+    const current = openDialog()
+    if (current) {
+      // A link to another section from inside this one: swap them. The close event fires
+      // asynchronously, so the swap is finished there rather than here.
+      if (current.contains(trigger)) {
+        switchTo = trigger.dataset.open
+        current.close()
+      }
+      return
+    }
+    open(trigger.dataset.open, trigger)
   })
 
   for (const dialog of dialogs.values()) {
@@ -180,12 +195,43 @@
     })
 
     dialog.addEventListener("close", () => {
+      if (switchTo) {
+        const next = switchTo
+        switchTo = null
+        open(next, null)
+        return
+      }
       const returnTo = opener
       opener = null
       if (returnTo && document.contains(returnTo)) returnTo.focus({ preventScroll: true })
       scheduleRestore()
     })
   }
+
+  // ---------------------------------------------------------------------- copy email
+
+  const announcer = document.querySelector("[data-announce]")
+
+  /** One message for screen readers. Used for actions that change nothing visible on the page. */
+  function announce(message) {
+    announcer.textContent = ""
+    window.requestAnimationFrame(() => { announcer.textContent = message })
+  }
+
+  const copyKey = document.querySelector("[data-copy-email]")
+  copyKey?.addEventListener("click", async () => {
+    const address = copyKey.dataset.copyEmail
+    try {
+      await navigator.clipboard.writeText(address)
+      cancelRestore()
+      type("Email copied", address)
+      announce("Email address copied")
+    } catch {
+      // No clipboard access (an insecure page, or a browser that refuses): open the mail
+      // client instead, so the key still does something useful.
+      window.location.href = `mailto:${address}`
+    }
+  })
 
   // ------------------------------------------------------------------------- start up
 
