@@ -384,6 +384,7 @@ a.project-name:hover { color: var(--pink); }
 
 /* A link to another section, styled as a quiet text button. */
 .more {
+  display: inline-block;
   margin-top: 10px;
   background: none; border: 0; padding: 4px 0; cursor: pointer;
   color: var(--pink); font: inherit; font-size: 0.93rem;
