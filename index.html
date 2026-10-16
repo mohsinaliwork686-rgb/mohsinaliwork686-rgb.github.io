@@ -204,6 +204,17 @@
           <span class="tags">TypeScript · Next.js</span>
           <a class="more" href="https://mohsinaliwork686-rgb.github.io/contextlab/" target="_blank" rel="noopener">Try it live <span aria-hidden="true">&rarr;</span></a>
         </li>
+        <li>
+          <a class="project-name" href="https://github.com/mohsinaliwork686-rgb/llm-router" target="_blank" rel="noopener">llm-router</a>
+          <p>One endpoint for many language models, with a spending cap that holds under concurrent load.</p>
+          <ul class="highlights">
+            <li>Speaks the OpenAI API, so an app adopts it by changing its base URL. Routes each request by policy and falls back when a provider fails: retries what can recover, skips a revoked key, and stops on a request every model would refuse.</li>
+            <li>Reserves each call's worst-case cost before it starts, in one atomic step in Redis, so several routers share one cap. In the demo, ten simultaneous $0.30 requests against a $1 cap: three answered, seven refused before reaching a model.</li>
+            <li>236 tests, including a deliberately racy store that the concurrency test is shown to catch. CI on Python 3.11 to 3.14 with a real Redis, on macOS and Windows, and the Docker demo itself.</li>
+          </ul>
+          <span class="tags">Python · FastAPI · Redis</span>
+          <a class="more" href="https://github.com/mohsinaliwork686-rgb/llm-router#try-it-in-a-minute-with-no-api-keys" target="_blank" rel="noopener">See the demo <span aria-hidden="true">&rarr;</span></a>
+        </li>
       </ul>
 
       <h3>At work</h3>
@@ -308,10 +319,11 @@
         <li><a href="https://github.com/mohsinaliwork686-rgb/promptlint" target="_blank" rel="noopener">promptlint</a> <span>a linter for LLM prompt templates</span></li>
         <li><a href="https://github.com/mohsinaliwork686-rgb/ragsweep" target="_blank" rel="noopener">ragsweep</a> <span>measures which retrieval settings work</span></li>
         <li><a href="https://github.com/mohsinaliwork686-rgb/contextlab" target="_blank" rel="noopener">contextlab</a> <span>plans a context window before it overflows</span></li>
+        <li><a href="https://github.com/mohsinaliwork686-rgb/llm-router" target="_blank" rel="noopener">llm-router</a> <span>routes model calls, with a hard spending cap</span></li>
       </ul>
 
       <h3>Up next</h3>
-      <p><strong>llm-router</strong> — routes model calls by cost, retries when a provider fails, and enforces a hard spending cap.</p>
+      <p><strong>helmdrift</strong> — shows how a live Kubernetes cluster differs from the Helm charts that are supposed to describe it.</p>
     </div>
   </dialog>
 
