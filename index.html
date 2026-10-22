@@ -215,6 +215,17 @@
           <span class="tags">Python · FastAPI · Redis</span>
           <a class="more" href="https://github.com/mohsinaliwork686-rgb/llm-router#try-it-in-a-minute-with-no-api-keys" target="_blank" rel="noopener">See the demo <span aria-hidden="true">&rarr;</span></a>
         </li>
+        <li>
+          <a class="project-name" href="https://github.com/mohsinaliwork686-rgb/helmdrift" target="_blank" rel="noopener">helmdrift</a>
+          <p>Shows what was changed by hand in a Kubernetes cluster, compared with its Helm chart, and who changed it.</p>
+          <ul class="highlights">
+            <li>Filters out the noise that makes a raw diff useless: bookkeeping, values the API server filled in, and values written another way, such as 0.5 CPU and 500m.</li>
+            <li>Names the tool behind each change (kubectl-edit, kubectl-set, kubectl scale), read from the cluster's own record of who set each field. With Helm 4, those are the fields that block the next upgrade.</li>
+            <li>Tested on objects captured from a real cluster before and after drift. CI runs an end-to-end check on a real kind cluster, and the tests on Linux, macOS and Windows.</li>
+          </ul>
+          <span class="tags">Python · Kubernetes · Helm</span>
+          <a class="more" href="https://github.com/mohsinaliwork686-rgb/helmdrift#what-it-looks-like" target="_blank" rel="noopener">See it run <span aria-hidden="true">&rarr;</span></a>
+        </li>
       </ul>
 
       <h3>At work</h3>
@@ -320,10 +331,11 @@
         <li><a href="https://github.com/mohsinaliwork686-rgb/ragsweep" target="_blank" rel="noopener">ragsweep</a> <span>measures which retrieval settings work</span></li>
         <li><a href="https://github.com/mohsinaliwork686-rgb/contextlab" target="_blank" rel="noopener">contextlab</a> <span>plans a context window before it overflows</span></li>
         <li><a href="https://github.com/mohsinaliwork686-rgb/llm-router" target="_blank" rel="noopener">llm-router</a> <span>routes model calls, with a hard spending cap</span></li>
+        <li><a href="https://github.com/mohsinaliwork686-rgb/helmdrift" target="_blank" rel="noopener">helmdrift</a> <span>finds hand-made changes in a cluster, and who made them</span></li>
       </ul>
 
       <h3>Up next</h3>
-      <p><strong>helmdrift</strong> — shows how a live Kubernetes cluster differs from the Helm charts that are supposed to describe it.</p>
+      <p><strong>evalboard</strong> — drop in two test runs of an AI system and see exactly what got worse.</p>
     </div>
   </dialog>
 
