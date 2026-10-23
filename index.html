@@ -228,6 +228,20 @@
         </li>
       </ul>
 
+      <h3>Contributions</h3>
+      <ul class="projects">
+        <li>
+          <a class="project-name" href="https://github.com/redis/redis-py/pull/4466" target="_blank" rel="noopener">redis-py</a>
+          <p>Documented the connection pool limit and <code>BlockingConnectionPool</code> in redis-py, the Python client for Redis. Merged.</p>
+          <ul class="highlights">
+            <li>Found while building llm-router: since redis-py 8.0 a pool holds 100 connections and fails at once when they are all busy, and the docs did not say so.</li>
+            <li>Opened the issue, agreed the scope with a maintainer, and went through two rounds of review: no new warnings in the docs build, and a broken example in the existing docs fixed along the way.</li>
+          </ul>
+          <span class="tags">Python · documentation · open source</span>
+          <a class="more" href="https://github.com/redis/redis-py/pull/4466" target="_blank" rel="noopener">See the pull request <span aria-hidden="true">&rarr;</span></a>
+        </li>
+      </ul>
+
       <h3>At work</h3>
       <ul class="projects">
         <li>
