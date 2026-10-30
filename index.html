@@ -247,6 +247,7 @@
           <ul class="highlights">
             <li>Batches skipped the one place where profiling was switched on. Moved that step into a method both paths share, so they cannot drift apart again. The issue had been open since 2022.</li>
             <li>Reproduced it first, then added a test that fails without the fix and passes with it, and ran every other test that uses batches. A maintainer approved it within half an hour and merged it the same day.</li>
+            <li>Also reviewed the maintainer's own fix for an IPv6 parsing bug and found a place it missed, where a server's new address would silently vanish. He fixed it, with tests, before merging.</li>
           </ul>
           <span class="tags">C# · .NET · open source</span>
           <a class="more" href="https://github.com/StackExchange/StackExchange.Redis/pull/3313" target="_blank" rel="noopener">See the pull request <span aria-hidden="true">&rarr;</span></a>
