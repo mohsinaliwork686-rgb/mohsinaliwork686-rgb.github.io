@@ -169,7 +169,32 @@
         <h2 id="work-title">Projects</h2>
         <button type="button" class="close" data-close>Close</button>
       </header>
-      <p class="dialog-lede">Open-source projects I am building in public, one finished project a week, and the systems I build at work.</p>
+      <p class="dialog-lede">Fixes merged into widely used open-source libraries, the projects I am building in public, one finished project a week, and the systems I build at work.</p>
+
+      <h3>Contributions</h3>
+      <ul class="projects">
+        <li>
+          <a class="project-name" href="https://github.com/StackExchange/StackExchange.Redis/pull/3313" target="_blank" rel="noopener">StackExchange.Redis</a>
+          <p>Fixed a bug in StackExchange.Redis, the most widely used Redis client for .NET: commands sent in a batch never showed up in its profiler. Merged.</p>
+          <ul class="highlights">
+            <li>Batches skipped the one place where profiling was switched on. Moved that step into a method both paths share, so they cannot drift apart again. The issue had been open since 2022.</li>
+            <li>Reproduced it first, then added a test that fails without the fix and passes with it, and ran every other test that uses batches. A maintainer approved it within half an hour and merged it the same day, and it shipped in release 3.4.29.</li>
+            <li>Also reviewed the maintainer's own fix for an IPv6 parsing bug and found a place it missed, where a server's new address would silently vanish. He fixed it, with tests, before merging.</li>
+          </ul>
+          <span class="tags">C# · .NET · open source</span>
+          <a class="more" href="https://github.com/StackExchange/StackExchange.Redis/pull/3313" target="_blank" rel="noopener">See the pull request <span aria-hidden="true">&rarr;</span></a>
+        </li>
+        <li>
+          <a class="project-name" href="https://github.com/redis/redis-py/pull/4466" target="_blank" rel="noopener">redis-py</a>
+          <p>Documented the connection pool limit and <code>BlockingConnectionPool</code> in redis-py, the Python client for Redis. Merged.</p>
+          <ul class="highlights">
+            <li>Found while building llm-router: since redis-py 8.0 a pool holds 100 connections and fails at once when they are all busy, and the docs did not say so.</li>
+            <li>Opened the issue, agreed the scope with a maintainer, and went through two rounds of review: no new warnings in the docs build, and a broken example in the existing docs fixed along the way.</li>
+          </ul>
+          <span class="tags">Python · documentation · open source</span>
+          <a class="more" href="https://github.com/redis/redis-py/pull/4466" target="_blank" rel="noopener">See the pull request <span aria-hidden="true">&rarr;</span></a>
+        </li>
+      </ul>
 
       <h3>Open source</h3>
       <ul class="projects">
@@ -236,31 +261,6 @@
           </ul>
           <span class="tags">TypeScript · Next.js · Recharts</span>
           <a class="more" href="https://mohsinaliwork686-rgb.github.io/evalboard/" target="_blank" rel="noopener">Try it live <span aria-hidden="true">&rarr;</span></a>
-        </li>
-      </ul>
-
-      <h3>Contributions</h3>
-      <ul class="projects">
-        <li>
-          <a class="project-name" href="https://github.com/StackExchange/StackExchange.Redis/pull/3313" target="_blank" rel="noopener">StackExchange.Redis</a>
-          <p>Fixed a bug in StackExchange.Redis, the most widely used Redis client for .NET: commands sent in a batch never showed up in its profiler. Merged.</p>
-          <ul class="highlights">
-            <li>Batches skipped the one place where profiling was switched on. Moved that step into a method both paths share, so they cannot drift apart again. The issue had been open since 2022.</li>
-            <li>Reproduced it first, then added a test that fails without the fix and passes with it, and ran every other test that uses batches. A maintainer approved it within half an hour and merged it the same day, and it shipped in release 3.4.29.</li>
-            <li>Also reviewed the maintainer's own fix for an IPv6 parsing bug and found a place it missed, where a server's new address would silently vanish. He fixed it, with tests, before merging.</li>
-          </ul>
-          <span class="tags">C# · .NET · open source</span>
-          <a class="more" href="https://github.com/StackExchange/StackExchange.Redis/pull/3313" target="_blank" rel="noopener">See the pull request <span aria-hidden="true">&rarr;</span></a>
-        </li>
-        <li>
-          <a class="project-name" href="https://github.com/redis/redis-py/pull/4466" target="_blank" rel="noopener">redis-py</a>
-          <p>Documented the connection pool limit and <code>BlockingConnectionPool</code> in redis-py, the Python client for Redis. Merged.</p>
-          <ul class="highlights">
-            <li>Found while building llm-router: since redis-py 8.0 a pool holds 100 connections and fails at once when they are all busy, and the docs did not say so.</li>
-            <li>Opened the issue, agreed the scope with a maintainer, and went through two rounds of review: no new warnings in the docs build, and a broken example in the existing docs fixed along the way.</li>
-          </ul>
-          <span class="tags">Python · documentation · open source</span>
-          <a class="more" href="https://github.com/redis/redis-py/pull/4466" target="_blank" rel="noopener">See the pull request <span aria-hidden="true">&rarr;</span></a>
         </li>
       </ul>
 
