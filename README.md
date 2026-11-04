@@ -71,8 +71,12 @@ After each weekly project ships:
    three highlights that are facts and results, not adjectives.
 2. **In progress** (`dialog#progress`): move the "Up next" project into "Shipped", and name
    the next one.
-3. Run `npx playwright test`.
-4. Push to `main`. The workflow runs the same checks, and only deploys if they pass.
+3. **Selected work** (`section.selected`, on the page itself): swap a card in when the new
+   project, or a new merged contribution, is stronger than one already there. Keep it to four.
+4. **CV**: if the CV changed, run `~/Documents/cv/build-public.sh` and copy `cv-public.pdf`
+   over `assets/Mohsin-Ali-CV.pdf`. That copy has no phone number; the CV source stays private.
+5. Run `npx playwright test`.
+6. Push to `main`. The workflow runs the same checks, and only deploys if they pass.
 
 The keys stay as they are: each one already has its own destination, and a test fails if
 two of them ever share one.

@@ -307,6 +307,23 @@ nav button:hover { color: var(--text); }
 .strip-track span::after { content: "\2726"; padding-left: 2rem; color: var(--orange); }
 @keyframes marquee { to { transform: translateX(-50%); } }
 
+/* -------------------------------------------------------- selected work */
+
+/* The work itself, on the page, for anyone who never presses a key. */
+.selected { max-width: 1120px; margin-top: clamp(44px, 6vw, 72px); }
+.selected h2 {
+  margin: 0 0 18px;
+  font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 400; letter-spacing: -0.01em;
+}
+.selected .projects { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.selected .projects > li { background: var(--panel); }
+.selected .projects p { color: var(--text-2); }
+.tags a { color: var(--text-2); text-underline-offset: 3px; }
+.tags a:hover { color: var(--text); }
+.selected-foot { display: flex; flex-wrap: wrap; gap: 4px 28px; margin: 6px 0 0; }
+
+@media (max-width: 720px) { .selected .projects { grid-template-columns: 1fr; } }
+
 /* -------------------------------------------------------------- contact */
 
 .contact { background: var(--panel); margin-top: clamp(48px, 7vw, 80px); padding-block: clamp(56px, 9vw, 96px); }
