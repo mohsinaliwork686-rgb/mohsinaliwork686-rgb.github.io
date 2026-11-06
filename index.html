@@ -155,9 +155,9 @@
           <span class="tags">TypeScript · Next.js · <a href="https://mohsinaliwork686-rgb.github.io/evalboard/" target="_blank" rel="noopener">try it live</a></span>
         </li>
         <li>
-          <a class="project-name" href="https://github.com/mohsinaliwork686-rgb/ragsweep" target="_blank" rel="noopener">ragsweep</a>
-          <p>Measures which retrieval settings actually find the right passage, across chunking, embeddings and keyword search.</p>
-          <span class="tags">Python · embeddings · evaluation</span>
+          <a class="project-name" href="https://github.com/mohsinaliwork686-rgb/semcache" target="_blank" rel="noopener">semcache</a>
+          <p>Caches model answers by meaning, with a benchmark that shows where it starts giving wrong answers.</p>
+          <span class="tags">Python · embeddings · Redis</span>
         </li>
         <li>
           <a class="project-name" href="https://github.com/StackExchange/StackExchange.Redis/pull/3313" target="_blank" rel="noopener">StackExchange.Redis</a>
@@ -293,6 +293,17 @@
           <span class="tags">TypeScript · Next.js · Recharts</span>
           <a class="more" href="https://mohsinaliwork686-rgb.github.io/evalboard/" target="_blank" rel="noopener">Try it live <span aria-hidden="true">&rarr;</span></a>
         </li>
+        <li>
+          <a class="project-name" href="https://github.com/mohsinaliwork686-rgb/semcache" target="_blank" rel="noopener">semcache</a>
+          <p>Caches model answers by meaning rather than exact wording, and measures exactly where that goes wrong.</p>
+          <ul class="highlights">
+            <li>One decorator on an existing function. It checks the exact text first, never mixes answers between models or prompts, and if the cache fails the call still runs.</li>
+            <li>Stores in memory or in Redis 8 vector sets, where the search runs inside Redis. Both pass the same test suite, and their scores agree to within 0.000001.</li>
+            <li>Benchmarked on 250 labelled questions, written before any embedding code. "Orders over $35" and "under $35" score 0.995, so on one model every answer from the cache is wrong from a threshold of 0.96 up. Results are reported per kind of near-miss, so an average can't hide it.</li>
+          </ul>
+          <span class="tags">Python · embeddings · Redis</span>
+          <a class="more" href="https://github.com/mohsinaliwork686-rgb/semcache#what-the-benchmark-found" target="_blank" rel="noopener">See the results <span aria-hidden="true">&rarr;</span></a>
+        </li>
       </ul>
 
       <h3>At work</h3>
@@ -400,10 +411,11 @@
         <li><a href="https://github.com/mohsinaliwork686-rgb/llm-router" target="_blank" rel="noopener">llm-router</a> <span>routes model calls, with a hard spending cap</span></li>
         <li><a href="https://github.com/mohsinaliwork686-rgb/helmdrift" target="_blank" rel="noopener">helmdrift</a> <span>finds hand-made changes in a cluster, and who made them</span></li>
         <li><a href="https://github.com/mohsinaliwork686-rgb/evalboard" target="_blank" rel="noopener">evalboard</a> <span>compares two eval runs and shows what got worse</span></li>
+        <li><a href="https://github.com/mohsinaliwork686-rgb/semcache" target="_blank" rel="noopener">semcache</a> <span>caches model answers by meaning, and shows where that goes wrong</span></li>
       </ul>
 
       <h3>Up next</h3>
-      <p><strong>semcache</strong> — caches model answers by meaning rather than exact wording, with a benchmark that shows where that goes wrong.</p>
+      <p><strong>A larger .NET project</strong> — two weeks in the stack I use at work, built to the same standard as the rest.</p>
     </div>
   </dialog>
 

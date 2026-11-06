@@ -9,7 +9,7 @@ test("selected work is on the page without pressing a key", async ({ page }) => 
   expect(await section.locator(".project-name").allTextContents()).toEqual([
     "llm-router",
     "evalboard",
-    "ragsweep",
+    "semcache",
     "StackExchange.Redis",
   ])
   for (const link of await section.locator("a.project-name").all()) {
