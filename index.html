@@ -216,6 +216,26 @@
           <a class="more" href="https://github.com/StackExchange/StackExchange.Redis/pull/3313" target="_blank" rel="noopener">See the pull request <span aria-hidden="true">&rarr;</span></a>
         </li>
         <li>
+          <a class="project-name" href="https://github.com/dotansimha/graphql-code-generator/pull/11106" target="_blank" rel="noopener">graphql-code-generator</a>
+          <p>Fixed a bug in GraphQL Code Generator, which writes TypeScript types from GraphQL: in string mode, a project with no queries yet got a file that did not compile. Merged.</p>
+          <ul class="highlights">
+            <li>The generator always wrote the <code>TypedDocumentString</code> class, but dropped the import it needs when there were no documents. It now keeps the import whenever it writes the class. The issue had been open since 2024.</li>
+            <li>Compiled the whole generated output with <code>tsc --strict</code> on five configurations: each went from three errors to none, and the output of every other mode stayed identical. Merged the next day and shipped the same day in <code>client-preset</code> 7.0.0.</li>
+          </ul>
+          <span class="tags">TypeScript · GraphQL · open source</span>
+          <a class="more" href="https://github.com/dotansimha/graphql-code-generator/pull/11106" target="_blank" rel="noopener">See the pull request <span aria-hidden="true">&rarr;</span></a>
+        </li>
+        <li>
+          <a class="project-name" href="https://github.com/authlib/authlib/pull/1009" target="_blank" rel="noopener">Authlib</a>
+          <p>Fixed expired tokens not being renewed in Authlib, a Python library for OAuth and OpenID Connect. Merged.</p>
+          <ul class="highlights">
+            <li>Asking for a token with an explicit <code>client_credentials</code> grant never stored the grant, so once the token expired the next request failed instead of fetching a new one. The issue had been open since 2024.</li>
+            <li>The fix is in the shared client, so it covers the Requests session and both HTTPX clients, with a test for each that fails without it. Merged within nine hours of opening.</li>
+          </ul>
+          <span class="tags">Python · OAuth · open source</span>
+          <a class="more" href="https://github.com/authlib/authlib/pull/1009" target="_blank" rel="noopener">See the pull request <span aria-hidden="true">&rarr;</span></a>
+        </li>
+        <li>
           <a class="project-name" href="https://github.com/redis/redis-py/pull/4466" target="_blank" rel="noopener">redis-py</a>
           <p>Documented the connection pool limit and <code>BlockingConnectionPool</code> in redis-py, the Python client for Redis. Merged.</p>
           <ul class="highlights">
