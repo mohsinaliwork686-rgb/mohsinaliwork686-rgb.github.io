@@ -217,9 +217,16 @@
         </li>
         <li>
           <a class="project-name" href="https://github.com/domaindrivendev/Swashbuckle.AspNetCore/pull/4245" target="_blank" rel="noopener">Swashbuckle.AspNetCore</a>
-          <p>Fixed a crash in Swashbuckle, the Swagger and OpenAPI library for ASP.NET Core: with inheritance turned on, a generic subclass such as <code>Response&lt;T&gt;</code> broke document generation. Merged.</p>
+          <p>Fixed two crashes in Swashbuckle, the Swagger and OpenAPI library for ASP.NET Core, both with inheritance turned on and both in bugs open since 2022. Both merged.</p>
           <ul class="highlights">
-            <li>Automatic subtype discovery returned open generic types, which can't have a schema of their own. With Newtonsoft.Json it threw, and with System.Text.Json it added schemas for <code>T</code>. It now skips them, and closed subtypes are still found. The issue had been open since 2022.</li>
+            <li>A generic subclass such as <code>Response&lt;T&gt;</code> broke document generation: subtype discovery returned open generic types, which can't have a schema of their own. It now skips them, and closed subtypes are still found.</li>
+            <li>A private or internal member marked <code>[JsonProperty]</code> crashed generation with Newtonsoft.Json. The maintainer pushed back on my first fix, which widened how members were found, so I narrowed it to the crash and added the snapshot test he asked for. He approved and merged it.</li>
+            <li>Tests for both serializers and both inheritance options, with snapshots of the generated documents, on .NET 8, 9 and 10.</li>
+          </ul>
+          <span class="tags">C# · .NET · open source</span>
+          <a class="more" href="https://github.com/domaindrivendev/Swashbuckle.AspNetCore/pull/4245" target="_blank" rel="noopener">See the first pull request <span aria-hidden="true">&rarr;</span></a>
+          <a class="more" href="https://github.com/domaindrivendev/Swashbuckle.AspNetCore/pull/4244" target="_blank" rel="noopener">See the second pull request <span aria-hidden="true">&rarr;</span></a>
+        </li>
             <li>Tests for both serializers and both inheritance options, plus the snapshot of the generated document the maintainer asked for, on .NET 8, 9 and 10. The maintainer reviewed and merged it the day it was opened.</li>
           </ul>
           <span class="tags">C# · .NET · open source</span>
