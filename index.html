@@ -216,6 +216,16 @@
           <a class="more" href="https://github.com/StackExchange/StackExchange.Redis/pull/3313" target="_blank" rel="noopener">See the pull request <span aria-hidden="true">&rarr;</span></a>
         </li>
         <li>
+          <a class="project-name" href="https://github.com/domaindrivendev/Swashbuckle.AspNetCore/pull/4245" target="_blank" rel="noopener">Swashbuckle.AspNetCore</a>
+          <p>Fixed a crash in Swashbuckle, the Swagger and OpenAPI library for ASP.NET Core: with inheritance turned on, a generic subclass such as <code>Response&lt;T&gt;</code> broke document generation. Merged.</p>
+          <ul class="highlights">
+            <li>Automatic subtype discovery returned open generic types, which can't have a schema of their own. With Newtonsoft.Json it threw, and with System.Text.Json it added schemas for <code>T</code>. It now skips them, and closed subtypes are still found. The issue had been open since 2022.</li>
+            <li>Tests for both serializers and both inheritance options, plus the snapshot of the generated document the maintainer asked for, on .NET 8, 9 and 10. The maintainer reviewed and merged it the day it was opened.</li>
+          </ul>
+          <span class="tags">C# · .NET · open source</span>
+          <a class="more" href="https://github.com/domaindrivendev/Swashbuckle.AspNetCore/pull/4245" target="_blank" rel="noopener">See the pull request <span aria-hidden="true">&rarr;</span></a>
+        </li>
+        <li>
           <a class="project-name" href="https://github.com/dotansimha/graphql-code-generator/pull/11106" target="_blank" rel="noopener">graphql-code-generator</a>
           <p>Fixed a bug in GraphQL Code Generator, which writes TypeScript types from GraphQL: in string mode, a project with no queries yet got a file that did not compile. Merged.</p>
           <ul class="highlights">
