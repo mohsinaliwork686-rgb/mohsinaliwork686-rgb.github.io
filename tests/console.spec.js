@@ -218,6 +218,27 @@ test.describe("sections", () => {
     await expect(trigger).toBeFocused()
   })
 
+  test("the AI Refinery case study opens from the work section and links to the public site", async ({ page }) => {
+    await page.goto("/")
+    await page.locator('nav button[data-open="work"]').click()
+    await page.locator('dialog#work .more[data-open="refinery"]').click()
+    const dialog = page.locator("dialog#refinery")
+    await expect(dialog).toBeVisible()
+    await expect(dialog.getByRole("heading", { name: "AI Refinery" })).toBeVisible()
+    const site = dialog.getByRole("link", { name: /airefinery\.co/ })
+    await expect(site).toHaveAttribute("href", "https://www.airefinery.co/")
+    await expect(site).toHaveAttribute("target", "_blank")
+    await page.keyboard.press("Escape")
+    await expect(dialog).toBeHidden()
+  })
+
+  test("never links to a development deployment", async ({ page }) => {
+    await page.goto("/")
+    const hrefs = await page.locator('a[href^="http"]').evaluateAll((links) => links.map((link) => link.getAttribute("href")))
+    expect(hrefs.length).toBeGreaterThan(20)
+    for (const href of hrefs) expect(href).not.toMatch(/azurestaticapps\.net|localhost|\/\/dev\./)
+  })
+
   test("names the clients in the case study", async ({ page }) => {
     await page.goto("/")
     await keyByLabel(page, "F: Featured work").click()

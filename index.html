@@ -233,15 +233,17 @@
         </li>
         <li>
           <a class="project-name" href="https://github.com/domaindrivendev/Swashbuckle.AspNetCore/pull/4245" target="_blank" rel="noopener">Swashbuckle.AspNetCore</a>
-          <p>Fixed two crashes in Swashbuckle, the Swagger and OpenAPI library for ASP.NET Core, both with inheritance turned on and both in bugs open since 2022. Both merged.</p>
+          <p>Fixed three bugs in Swashbuckle, the Swagger and OpenAPI library for ASP.NET Core, all in issues open since 2022: two crashes with inheritance turned on, and sets documented without their rule. All three merged.</p>
           <ul class="highlights">
             <li>A generic subclass such as <code>Response&lt;T&gt;</code> broke document generation: subtype discovery returned open generic types, which can't have a schema of their own. It now skips them, and closed subtypes are still found.</li>
             <li>A private or internal member marked <code>[JsonProperty]</code> crashed generation with Newtonsoft.Json. The maintainer pushed back on my first fix, which widened how members were found, so I narrowed it to the crash and added the snapshot test he asked for. He approved and merged it.</li>
+            <li>A property declared as <code>IReadOnlySet&lt;T&gt;</code> was documented as a plain array, without the <code>uniqueItems</code> rule that <code>ISet&lt;T&gt;</code> gets. Merged within half an hour of opening.</li>
             <li>Tests for both serializers and both inheritance options, with snapshots of the generated documents, on .NET 8, 9 and 10.</li>
           </ul>
           <span class="tags">C# · .NET · open source</span>
-          <a class="more" href="https://github.com/domaindrivendev/Swashbuckle.AspNetCore/pull/4245" target="_blank" rel="noopener">See the first pull request <span aria-hidden="true">&rarr;</span></a>
-          <a class="more" href="https://github.com/domaindrivendev/Swashbuckle.AspNetCore/pull/4244" target="_blank" rel="noopener">See the second pull request <span aria-hidden="true">&rarr;</span></a>
+          <a class="more" href="https://github.com/domaindrivendev/Swashbuckle.AspNetCore/pull/4245" target="_blank" rel="noopener">See #4245 <span aria-hidden="true">&rarr;</span></a>
+          <a class="more" href="https://github.com/domaindrivendev/Swashbuckle.AspNetCore/pull/4244" target="_blank" rel="noopener">See #4244 <span aria-hidden="true">&rarr;</span></a>
+          <a class="more" href="https://github.com/domaindrivendev/Swashbuckle.AspNetCore/pull/4246" target="_blank" rel="noopener">See #4246 <span aria-hidden="true">&rarr;</span></a>
         </li>
         <li>
           <a class="project-name" href="https://github.com/dotansimha/graphql-code-generator/pull/11106" target="_blank" rel="noopener">graphql-code-generator</a>
@@ -255,13 +257,15 @@
         </li>
         <li>
           <a class="project-name" href="https://github.com/authlib/authlib/pull/1009" target="_blank" rel="noopener">Authlib</a>
-          <p>Fixed expired tokens not being renewed in Authlib, a Python library for OAuth and OpenID Connect. Merged.</p>
+          <p>Fixed two bugs in how Authlib, a Python library for OAuth and OpenID Connect, renews expired tokens. Both merged.</p>
           <ul class="highlights">
             <li>Asking for a token with an explicit <code>client_credentials</code> grant never stored the grant, so once the token expired the next request failed instead of fetching a new one. The issue had been open since 2024.</li>
             <li>The fix is in the shared client, so it covers the Requests session and both HTTPX clients, with a test for each that fails without it. Merged within nine hours of opening.</li>
+            <li>A renewed token lost the app's <code>access_token_params</code>, so a server that requires a parameter such as <code>audience</code> rejected the renewal. Every automatic fetch now sends them, and a server's metadata document can't set them. Tested on the Requests session, both HTTPX clients, Flask and Starlette.</li>
           </ul>
           <span class="tags">Python · OAuth · open source</span>
-          <a class="more" href="https://github.com/authlib/authlib/pull/1009" target="_blank" rel="noopener">See the pull request <span aria-hidden="true">&rarr;</span></a>
+          <a class="more" href="https://github.com/authlib/authlib/pull/1009" target="_blank" rel="noopener">See #1009 <span aria-hidden="true">&rarr;</span></a>
+          <a class="more" href="https://github.com/authlib/authlib/pull/1026" target="_blank" rel="noopener">See #1026 <span aria-hidden="true">&rarr;</span></a>
         </li>
         <li>
           <a class="project-name" href="https://github.com/redis/redis-py/pull/4466" target="_blank" rel="noopener">redis-py</a>
@@ -393,8 +397,14 @@ Deployment/shop-web
       <h3>At work</h3>
       <ul class="projects">
         <li>
+          <strong class="project-name">AI Refinery</strong>
+          <p>SoftBuilds' self-hosted LLM platform, which runs open-source models on a customer's own Kubernetes cluster. I built its subscription, billing and licensing layer.</p>
+          <span class="tags">SoftBuilds · Python · FastAPI · React · Kubernetes · Azure</span>
+          <button type="button" class="more" data-open="refinery">Read the case study <span aria-hidden="true">&rarr;</span></button>
+        </li>
+        <li>
           <strong class="project-name">Healthcare order fulfilment</strong>
-          <p>The platform and pipelines behind at-home lab testing fulfilled through LabCorp, for Ditek and Medzah.</p>
+          <p>The platform and pipelines behind at-home lab testing fulfilled through LabCorp, for Ditek and Medzah. Live since October 2026.</p>
           <span class="tags">SoftBuilds · C# · Python · Azure</span>
           <button type="button" class="more" data-open="featured">Read the case study <span aria-hidden="true">&rarr;</span></button>
         </li>
@@ -416,7 +426,7 @@ Deployment/shop-web
         <h2 id="featured-title">Healthcare order fulfilment</h2>
         <button type="button" class="close" data-close>Close</button>
       </header>
-      <p class="dialog-lede">At SoftBuilds: order processing and kit fulfilment for at-home lab testing. One platform serving two operating models on shared infrastructure, both fulfilled through LabCorp: <strong>Ditek</strong>, for business site-based testing, and <strong>Medzah</strong>, for direct-to-consumer testing at home.</p>
+      <p class="dialog-lede">At SoftBuilds: order processing and kit fulfilment for at-home lab testing. One platform serving two operating models on shared infrastructure, both fulfilled through LabCorp: <strong>Ditek</strong>, for business site-based testing, and <strong>Medzah</strong>, for direct-to-consumer testing at home. Live in production since October 2026.</p>
 
       <h3>The platform</h3>
       <ul class="highlights">
@@ -449,6 +459,44 @@ Deployment/shop-web
       </ul>
 
       <p class="tags">C# · ASP.NET Core · Python · Node.js · Azure Durable Functions · Azure Storage · Bitbucket Pipelines</p>
+    </div>
+  </dialog>
+
+  <dialog id="refinery" aria-labelledby="refinery-title">
+    <div class="dialog-body">
+      <header class="dialog-head">
+        <h2 id="refinery-title">AI Refinery</h2>
+        <button type="button" class="close" data-close>Close</button>
+      </header>
+      <p class="dialog-lede">At SoftBuilds, since July 2026: the company's own product, a self-hosted LLM platform. Customers run open-source models on their own Kubernetes cluster, with no prompt leaving their network, and a cloud service on Azure supplies the model catalog and sells the plans. I built the subscription, billing and licensing layer that connects the two.</p>
+
+      <h3>How it runs</h3>
+      <ul class="highlights">
+        <li>On the customer's side, one Helm chart installs the platform on Kubernetes. Traefik routes every request, and each model is served by llama.cpp as a KServe service on Knative, scaling to zero when idle.</li>
+        <li>In the cloud, FastAPI services on Azure Functions, PostgreSQL, and a React site on Azure Static Web Apps with Microsoft Entra ID sign-in.</li>
+      </ul>
+
+      <h3>Licensing</h3>
+      <ul class="highlights">
+        <li>An installation checks its plan with a cloud-signed token that it verifies itself, so it works offline. It re-checks every hour, notices a clock turned back, and locks with a clear screen and grace-period warnings when a plan lapses. Air-gapped sites unlock with a pasted token.</li>
+        <li>One plan, one system: each installation has a permanent ID, and claims are serialized in PostgreSQL with advisory locks and a partial unique index, so two machines can't share a plan.</li>
+        <li>Negotiated custom plans, from an admin's offer through checkout to per-feature and model-size limits enforced on the installation.</li>
+      </ul>
+
+      <h3>Billing</h3>
+      <ul class="highlights">
+        <li>Moved billing from Stripe to Paddle, then added Stripe back behind one switch: signed webhooks, each event handled once, monthly and yearly plans, and a one-time trial.</li>
+        <li>Test and live payments are kept apart, so a test payment can never unlock a real installation.</li>
+      </ul>
+
+      <h3>Running it</h3>
+      <ul class="highlights">
+        <li>Tested changes end to end on local k3d clusters, through Traefik to the models.</li>
+        <li>Traced a doubling of the Azure bill to model downloads streaming through one Function, after ruling out storage, egress and logging, and traced a model-sync failure across both services to a rejected API key.</li>
+      </ul>
+
+      <p class="tags">Python · FastAPI · React · PostgreSQL · Kubernetes · Helm · Traefik · Azure Functions · Paddle · Stripe · 232 tests</p>
+      <p><a class="more" href="https://www.airefinery.co/" target="_blank" rel="noopener">Visit airefinery.co <span aria-hidden="true">&rarr;</span></a></p>
     </div>
   </dialog>
 
