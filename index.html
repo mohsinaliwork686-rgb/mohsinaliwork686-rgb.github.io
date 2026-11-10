@@ -398,7 +398,7 @@ Deployment/shop-web
       <ul class="projects">
         <li>
           <strong class="project-name">AI Refinery</strong>
-          <p>SoftBuilds' self-hosted LLM platform, which runs open-source models on a customer's own Kubernetes cluster. I built its subscription, billing and licensing layer.</p>
+          <p>SoftBuilds' self-hosted LLM platform, which runs open-source models on a customer's own Kubernetes cluster. I designed and built its subscription enforcement, and the billing and licensing around it.</p>
           <span class="tags">SoftBuilds · Python · FastAPI · React · Kubernetes · Azure</span>
           <button type="button" class="more" data-open="refinery">Read the case study <span aria-hidden="true">&rarr;</span></button>
         </li>
@@ -468,7 +468,7 @@ Deployment/shop-web
         <h2 id="refinery-title">AI Refinery</h2>
         <button type="button" class="close" data-close>Close</button>
       </header>
-      <p class="dialog-lede">At SoftBuilds, since July 2026: the company's own product, a self-hosted LLM platform. Customers run open-source models on their own Kubernetes cluster, with no prompt leaving their network, and a cloud service on Azure supplies the model catalog and sells the plans. I built the subscription, billing and licensing layer that connects the two.</p>
+      <p class="dialog-lede">At SoftBuilds, since July 2026: the company's own product, a self-hosted LLM platform. Customers run open-source models on their own Kubernetes cluster, with no prompt leaving their network, and a cloud service on Azure supplies the model catalog and sells the plans. I designed and built the subscription enforcement that connects the two, and the billing and licensing around it.</p>
 
       <h3>How it runs</h3>
       <ul class="highlights">
@@ -476,9 +476,16 @@ Deployment/shop-web
         <li>In the cloud, FastAPI services on Azure Functions, PostgreSQL, and a React site on Azure Static Web Apps with Microsoft Entra ID sign-in.</li>
       </ul>
 
+      <h3>Subscription enforcement</h3>
+      <ul class="highlights">
+        <li>Each installation verifies a cloud-signed entitlement token itself, so enforcement keeps working with no internet. An hourly check re-reads the signed token rather than values in the local database, so editing the database unlocks nothing.</li>
+        <li>A locked installation refuses every model request and shows a lock screen, and a banner warns during the grace period before the cutoff. The cutoff is signed into the token, so it can't be extended locally, and access depends on the plan's status as well as its end date.</li>
+        <li>Notices a clock turned back, and recovers without internet once it's corrected. Air-gapped sites unlock by pasting a signed token.</li>
+        <li>Subscriptions and API tokens are scoped to their environment, so a sandbox payment can't unlock production.</li>
+      </ul>
+
       <h3>Licensing</h3>
       <ul class="highlights">
-        <li>An installation checks its plan with a cloud-signed token that it verifies itself, so it works offline. It re-checks every hour, notices a clock turned back, and locks with a clear screen and grace-period warnings when a plan lapses. Air-gapped sites unlock with a pasted token.</li>
         <li>One plan, one system: each installation has a permanent ID, and claims are serialized in PostgreSQL with advisory locks and a partial unique index, so two machines can't share a plan.</li>
         <li>Negotiated custom plans, from an admin's offer through checkout to per-feature and model-size limits enforced on the installation.</li>
       </ul>
@@ -486,7 +493,6 @@ Deployment/shop-web
       <h3>Billing</h3>
       <ul class="highlights">
         <li>Moved billing from Stripe to Paddle, then added Stripe back behind one switch: signed webhooks, each event handled once, monthly and yearly plans, and a one-time trial.</li>
-        <li>Test and live payments are kept apart, so a test payment can never unlock a real installation.</li>
       </ul>
 
       <h3>Running it</h3>
