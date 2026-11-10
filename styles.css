@@ -427,6 +427,7 @@ a.project-name:hover { color: var(--pink); }
   text-decoration-color: rgba(228, 165, 202, 0.4);
 }
 .more:hover { text-decoration-color: var(--pink); }
+.more + .more { margin-left: 22px; }
 .dialog-foot { margin-top: 22px; }
 
 .shipped { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }

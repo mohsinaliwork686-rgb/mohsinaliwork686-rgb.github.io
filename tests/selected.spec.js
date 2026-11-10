@@ -71,6 +71,24 @@ test("no screenshot or terminal output spills out of its card", async ({ page })
 })
 
 
+test("every project of mine links to the steps for running it", async ({ page }) => {
+  await page.goto("/")
+  await page.locator('section.selected button[data-open="work"]').click()
+  const mine = /^https:\/\/github\.com\/mohsinaliwork686-rgb\/[^/#]+$/
+  let checked = 0
+  for (const scope of ["section.selected", "dialog#work"]) {
+    for (const item of await page.locator(`${scope} .projects > li`).all()) {
+      const repo = await item.locator(".project-name").getAttribute("href")
+      if (!repo || !mine.test(repo)) continue
+      const run = item.getByRole("link", { name: /run it yourself/i })
+      await expect(run).toHaveCount(1)
+      await expect(run).toHaveAttribute("href", new RegExp(`^${repo.replace(/[.]/g, "\\.")}#[a-z0-9-]+$`))
+      checked++
+    }
+  }
+  expect(checked).toBe(10)
+})
+
 test("every project in the work section is a complete entry in a list", async ({ page }) => {
   await page.goto("/")
   await page.locator('section.selected button[data-open="work"]').click()

@@ -154,19 +154,19 @@
    refused      7  (HTTP 429, before reaching the model)</pre></figure>
           <a class="project-name" href="https://github.com/mohsinaliwork686-rgb/llm-router" target="_blank" rel="noopener">llm-router</a>
           <p>One endpoint for many language models, with a spending cap that holds under concurrent load.</p>
-          <span class="tags">Python · FastAPI · Redis</span>
+          <span class="tags">Python · FastAPI · Redis · <a href="https://github.com/mohsinaliwork686-rgb/llm-router#try-it-in-a-minute-with-no-api-keys" target="_blank" rel="noopener">run it yourself</a></span>
         </li>
         <li>
           <figure class="shot"><img src="assets/work/evalboard.jpg" width="1120" height="461" loading="lazy" decoding="async" alt="evalboard comparing two runs: 5 cases regressed while the mean score rose from 0.710 to 0.740, with a bar chart of every case&#x27;s change"></figure>
           <a class="project-name" href="https://github.com/mohsinaliwork686-rgb/evalboard" target="_blank" rel="noopener">evalboard</a>
           <p>Compares two eval runs case by case, and shows exactly what got worse.</p>
-          <span class="tags">TypeScript · Next.js · <a href="https://mohsinaliwork686-rgb.github.io/evalboard/" target="_blank" rel="noopener">try it live</a></span>
+          <span class="tags">TypeScript · Next.js · <a href="https://mohsinaliwork686-rgb.github.io/evalboard/" target="_blank" rel="noopener">try it live</a> · <a href="https://github.com/mohsinaliwork686-rgb/evalboard#run-it" target="_blank" rel="noopener">run it yourself</a></span>
         </li>
         <li>
           <figure class="shot"><img src="assets/work/semcache.png" width="1120" height="476" loading="lazy" decoding="async" alt="semcache&#x27;s benchmark for two embedding models: the share of questions answered right and wrong from the cache at each similarity threshold. Wrong answers remain even at 0.99"></figure>
           <a class="project-name" href="https://github.com/mohsinaliwork686-rgb/semcache" target="_blank" rel="noopener">semcache</a>
           <p>Caches model answers by meaning, with a benchmark that shows where it starts giving wrong answers.</p>
-          <span class="tags">Python · embeddings · Redis</span>
+          <span class="tags">Python · embeddings · Redis · <a href="https://github.com/mohsinaliwork686-rgb/semcache#try-it" target="_blank" rel="noopener">run it yourself</a></span>
         </li>
         <li>
           <figure class="console" aria-label="The merged change in StackExchange.Redis"><pre><span class="file">src/StackExchange.Redis/RedisBatch.cs</span>
@@ -285,13 +285,14 @@ examples/agent.py:4:20: error PL004 OpenAI API key found in prompt text (sk-p...
 examples/agent.py:6:15: error PL002 template uses {max_words} but it is never supplied
 examples/classify.md:10:1: error PL001 '{"category": "&lt;one of the above&gt;", "c...' is not a valid placeholder
 
-Found 3 errors and 2 warnings in 3 files scanned. 1 fixable with --fix.</pre></figure>
+Found 4 errors and 7 warnings in 3 files scanned. 3 fixable with --fix.</pre></figure>
           <ul class="highlights">
             <li>Finds the bugs that only show up in production: a JSON example that breaks <code>.format()</code>, a variable the code never passes, an API key left in a prompt, user input pasted straight into instructions.</li>
             <li>Reads Python, YAML and Markdown, reports the exact line and column, and has an autofix that checks the text is still where it expects before changing anything.</li>
             <li>No runtime dependencies. Tested on Linux, macOS and Windows across three Python versions.</li>
           </ul>
           <span class="tags">Python · static analysis</span>
+          <a class="more" href="https://github.com/mohsinaliwork686-rgb/promptlint#install" target="_blank" rel="noopener">Run it yourself <span aria-hidden="true">&rarr;</span></a>
         </li>
         <li>
           <a class="project-name" href="https://github.com/mohsinaliwork686-rgb/ragsweep" target="_blank" rel="noopener">ragsweep</a>
@@ -309,6 +310,7 @@ Best: dense / fixed / chunk 256 / overlap 0</pre></figure>
             <li>Shares work across the sweep, so 54 runs take 1m 41s the first time and 1.3s after that.</li>
           </ul>
           <span class="tags">Python · embeddings · evaluation</span>
+          <a class="more" href="https://github.com/mohsinaliwork686-rgb/ragsweep#try-it-in-two-minutes" target="_blank" rel="noopener">Run it yourself <span aria-hidden="true">&rarr;</span></a>
         </li>
         <li>
           <a class="project-name" href="https://github.com/mohsinaliwork686-rgb/contextlab" target="_blank" rel="noopener">contextlab</a>
@@ -321,6 +323,7 @@ Best: dense / fixed / chunk 256 / overlap 0</pre></figure>
           </ul>
           <span class="tags">TypeScript · Next.js</span>
           <a class="more" href="https://mohsinaliwork686-rgb.github.io/contextlab/" target="_blank" rel="noopener">Try it live <span aria-hidden="true">&rarr;</span></a>
+          <a class="more" href="https://github.com/mohsinaliwork686-rgb/contextlab#run-it" target="_blank" rel="noopener">Run it yourself <span aria-hidden="true">&rarr;</span></a>
         </li>
         <li>
           <a class="project-name" href="https://github.com/mohsinaliwork686-rgb/llm-router" target="_blank" rel="noopener">llm-router</a>
@@ -338,7 +341,7 @@ Best: dense / fixed / chunk 256 / overlap 0</pre></figure>
             <li>236 tests, including a deliberately racy store that the concurrency test is shown to catch. CI on Python 3.11 to 3.14 with a real Redis, on macOS and Windows, and the Docker demo itself.</li>
           </ul>
           <span class="tags">Python · FastAPI · Redis</span>
-          <a class="more" href="https://github.com/mohsinaliwork686-rgb/llm-router#try-it-in-a-minute-with-no-api-keys" target="_blank" rel="noopener">See the demo <span aria-hidden="true">&rarr;</span></a>
+          <a class="more" href="https://github.com/mohsinaliwork686-rgb/llm-router#try-it-in-a-minute-with-no-api-keys" target="_blank" rel="noopener">Run it yourself <span aria-hidden="true">&rarr;</span></a>
         </li>
         <li>
           <a class="project-name" href="https://github.com/mohsinaliwork686-rgb/helmdrift" target="_blank" rel="noopener">helmdrift</a>
@@ -357,6 +360,7 @@ Deployment/shop-web
           </ul>
           <span class="tags">Python · Kubernetes · Helm</span>
           <a class="more" href="https://github.com/mohsinaliwork686-rgb/helmdrift#what-it-looks-like" target="_blank" rel="noopener">See it run <span aria-hidden="true">&rarr;</span></a>
+          <a class="more" href="https://github.com/mohsinaliwork686-rgb/helmdrift#install" target="_blank" rel="noopener">Run it yourself <span aria-hidden="true">&rarr;</span></a>
         </li>
         <li>
           <a class="project-name" href="https://github.com/mohsinaliwork686-rgb/evalboard" target="_blank" rel="noopener">evalboard</a>
@@ -369,6 +373,7 @@ Deployment/shop-web
           </ul>
           <span class="tags">TypeScript · Next.js · Recharts</span>
           <a class="more" href="https://mohsinaliwork686-rgb.github.io/evalboard/" target="_blank" rel="noopener">Try it live <span aria-hidden="true">&rarr;</span></a>
+          <a class="more" href="https://github.com/mohsinaliwork686-rgb/evalboard#run-it" target="_blank" rel="noopener">Run it yourself <span aria-hidden="true">&rarr;</span></a>
         </li>
         <li>
           <a class="project-name" href="https://github.com/mohsinaliwork686-rgb/semcache" target="_blank" rel="noopener">semcache</a>
@@ -381,6 +386,7 @@ Deployment/shop-web
           </ul>
           <span class="tags">Python · embeddings · Redis</span>
           <a class="more" href="https://github.com/mohsinaliwork686-rgb/semcache#what-the-benchmark-found" target="_blank" rel="noopener">See the results <span aria-hidden="true">&rarr;</span></a>
+          <a class="more" href="https://github.com/mohsinaliwork686-rgb/semcache#try-it" target="_blank" rel="noopener">Run it yourself <span aria-hidden="true">&rarr;</span></a>
         </li>
       </ul>
 
