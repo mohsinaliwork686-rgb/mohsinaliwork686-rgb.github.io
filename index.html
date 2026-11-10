@@ -145,21 +145,37 @@
       <h2 id="selected-title">Selected work</h2>
       <ul class="projects">
         <li>
+          <figure class="console" aria-label="Real output from llm-router&#x27;s demo"><pre><span class="prompt">$ docker compose run --rm demo</span>
+1. Fallback: ask the "resilient" policy for an answer
+   x-router-model       budget
+   x-router-attempts    4
+2. The cap: ten expensive requests at the same moment
+   answered     3
+   refused      7  (HTTP 429, before reaching the model)</pre></figure>
           <a class="project-name" href="https://github.com/mohsinaliwork686-rgb/llm-router" target="_blank" rel="noopener">llm-router</a>
           <p>One endpoint for many language models, with a spending cap that holds under concurrent load.</p>
           <span class="tags">Python · FastAPI · Redis</span>
         </li>
         <li>
+          <figure class="shot"><img src="assets/work/evalboard.jpg" width="1120" height="461" loading="lazy" decoding="async" alt="evalboard comparing two runs: 5 cases regressed while the mean score rose from 0.710 to 0.740, with a bar chart of every case&#x27;s change"></figure>
           <a class="project-name" href="https://github.com/mohsinaliwork686-rgb/evalboard" target="_blank" rel="noopener">evalboard</a>
           <p>Compares two eval runs case by case, and shows exactly what got worse.</p>
           <span class="tags">TypeScript · Next.js · <a href="https://mohsinaliwork686-rgb.github.io/evalboard/" target="_blank" rel="noopener">try it live</a></span>
         </li>
         <li>
+          <figure class="shot"><img src="assets/work/semcache.png" width="1120" height="476" loading="lazy" decoding="async" alt="semcache&#x27;s benchmark for two embedding models: the share of questions answered right and wrong from the cache at each similarity threshold. Wrong answers remain even at 0.99"></figure>
           <a class="project-name" href="https://github.com/mohsinaliwork686-rgb/semcache" target="_blank" rel="noopener">semcache</a>
           <p>Caches model answers by meaning, with a benchmark that shows where it starts giving wrong answers.</p>
           <span class="tags">Python · embeddings · Redis</span>
         </li>
         <li>
+          <figure class="console" aria-label="The merged change in StackExchange.Redis"><pre><span class="file">src/StackExchange.Redis/RedisBatch.cs</span>
+ foreach (var pair in byBridge)
+ {
+<span class="add">+  foreach (var message in pair.Value)</span>
+<span class="add">+  {</span>
+<span class="add">+    multiplexer.AttachProfiling(message, pair.Key.ServerEndPoint);</span>
+<span class="add">+  }</span></pre></figure>
           <a class="project-name" href="https://github.com/StackExchange/StackExchange.Redis/pull/3313" target="_blank" rel="noopener">StackExchange.Redis</a>
           <p>Fixed a bug in the most widely used Redis client for .NET. Merged the same day, and shipped in release 3.4.29.</p>
           <span class="tags">C# · open-source contribution</span>
@@ -269,6 +285,12 @@
         <li>
           <a class="project-name" href="https://github.com/mohsinaliwork686-rgb/promptlint" target="_blank" rel="noopener">promptlint</a>
           <p>A linter for LLM prompt templates.</p>
+          <figure class="console" aria-label="Real output from promptlint"><pre><span class="prompt">$ promptlint examples</span>
+examples/agent.py:4:20: error PL004 OpenAI API key found in prompt text (sk-p...44 chars)
+examples/agent.py:6:15: error PL002 template uses {max_words} but it is never supplied
+examples/classify.md:10:1: error PL001 '{"category": "&lt;one of the above&gt;", "c...' is not a valid placeholder
+
+Found 3 errors and 2 warnings in 3 files scanned. 1 fixable with --fix.</pre></figure>
           <ul class="highlights">
             <li>Finds the bugs that only show up in production: a JSON example that breaks <code>.format()</code>, a variable the code never passes, an API key left in a prompt, user input pasted straight into instructions.</li>
             <li>Reads Python, YAML and Markdown, reports the exact line and column, and has an autofix that checks the text is still where it expects before changing anything.</li>
@@ -279,6 +301,13 @@
         <li>
           <a class="project-name" href="https://github.com/mohsinaliwork686-rgb/ragsweep" target="_blank" rel="noopener">ragsweep</a>
           <p>Measures which retrieval settings actually find the right passage.</p>
+          <figure class="console" aria-label="Real output from ragsweep"><pre><span class="prompt">$ ragsweep run</span>
+17 documents, 31 questions, 54 runs
+retriever  strategy  chunk  ovl   r@1   r@3   r@5  r@10   MRR
+dense      fixed       256    0  0.87  0.92  0.97  0.98  0.95  *
+hybrid     sentence    256    0  0.84  0.95  0.98  1.00  0.95
+bm25       fixed       256    0  0.68  0.92  0.94  1.00  0.84
+Best: dense / fixed / chunk 256 / overlap 0</pre></figure>
           <ul class="highlights">
             <li>Sweeps chunk size, overlap, embedding models and BM25 keyword search against a labelled question set, and ranks every combination.</li>
             <li>On its example corpus, keyword search matched embeddings on four of five question types. Embeddings only pulled ahead when a question's wording did not match the document.</li>
@@ -289,6 +318,7 @@
         <li>
           <a class="project-name" href="https://github.com/mohsinaliwork686-rgb/contextlab" target="_blank" rel="noopener">contextlab</a>
           <p>Plans a context window before it overflows.</p>
+          <figure class="shot"><img src="assets/work/contextlab.jpg" width="1120" height="473" loading="lazy" decoding="async" alt="contextlab planning a request: tokens sent, cost, how much of the window is used, and which part of the prompt takes how much"></figure>
           <ul class="highlights">
             <li>Shows what fits in a model's window, what each part of the request costs, and exactly where an over-long request gets cut.</li>
             <li>Runs entirely in the browser. Token counts that are estimates are labelled as estimates, never passed off as exact.</li>
@@ -300,6 +330,13 @@
         <li>
           <a class="project-name" href="https://github.com/mohsinaliwork686-rgb/llm-router" target="_blank" rel="noopener">llm-router</a>
           <p>One endpoint for many language models, with a spending cap that holds under concurrent load.</p>
+          <figure class="console" aria-label="Real output from llm-router&#x27;s demo"><pre><span class="prompt">$ docker compose run --rm demo</span>
+1. Fallback: ask the "resilient" policy for an answer
+   x-router-model       budget
+   x-router-attempts    4
+2. The cap: ten expensive requests at the same moment
+   answered     3
+   refused      7  (HTTP 429, before reaching the model)</pre></figure>
           <ul class="highlights">
             <li>Speaks the OpenAI API, so an app adopts it by changing its base URL. Routes each request by policy and falls back when a provider fails: retries what can recover, skips a revoked key, and stops on a request every model would refuse.</li>
             <li>Reserves each call's worst-case cost before it starts, in one atomic step in Redis, so several routers share one cap. In the demo, ten simultaneous $0.30 requests against a $1 cap: three answered, seven refused before reaching a model.</li>
@@ -311,6 +348,13 @@
         <li>
           <a class="project-name" href="https://github.com/mohsinaliwork686-rgb/helmdrift" target="_blank" rel="noopener">helmdrift</a>
           <p>Shows what was changed by hand in a Kubernetes cluster, compared with its Helm chart, and who changed it.</p>
+          <figure class="console" aria-label="Real output from helmdrift"><pre><span class="prompt">$ helmdrift --release shop --namespace shop</span>
+Deployment/shop-web
+  ~ spec.replicas
+      chart 2  -&gt;  live 4
+      owned by kubectl (scale)
+  + spec.template.spec.containers[name=web].env[name=DEBUG]
+      live {"name": "DEBUG", "value": "true"}</pre></figure>
           <ul class="highlights">
             <li>Filters out the noise that makes a raw diff useless: bookkeeping, values the API server filled in, and values written another way, such as 0.5 CPU and 500m.</li>
             <li>Names the tool behind each change (kubectl-edit, kubectl-set, kubectl scale), read from the cluster's own record of who set each field. With Helm 4, those are the fields that block the next upgrade.</li>
@@ -322,6 +366,7 @@
         <li>
           <a class="project-name" href="https://github.com/mohsinaliwork686-rgb/evalboard" target="_blank" rel="noopener">evalboard</a>
           <p>Compares two eval runs of an AI system case by case, and shows exactly what got worse.</p>
+          <figure class="shot"><img src="assets/work/evalboard.jpg" width="1120" height="461" loading="lazy" decoding="async" alt="evalboard comparing two runs: 5 cases regressed while the mean score rose from 0.710 to 0.740, with a bar chart of every case&#x27;s change"></figure>
           <ul class="highlights">
             <li>Puts regressions first, then fixes, then every score that moved, with a chart and a tag filter that make a cluster of failures stand out where the average hides it.</li>
             <li>Reads the results file ragsweep writes. On ragsweep's real runs, doubling the chunk size broke two questions and fixed two others while the pass rate stayed at exactly 90.3%.</li>
@@ -333,6 +378,7 @@
         <li>
           <a class="project-name" href="https://github.com/mohsinaliwork686-rgb/semcache" target="_blank" rel="noopener">semcache</a>
           <p>Caches model answers by meaning rather than exact wording, and measures exactly where that goes wrong.</p>
+          <figure class="shot"><img src="assets/work/semcache.png" width="1120" height="476" loading="lazy" decoding="async" alt="semcache&#x27;s benchmark for two embedding models: the share of questions answered right and wrong from the cache at each similarity threshold. Wrong answers remain even at 0.99"></figure>
           <ul class="highlights">
             <li>One decorator on an existing function. It checks the exact text first, never mixes answers between models or prompts, and if the cache fails the call still runs.</li>
             <li>Stores in memory or in Redis 8 vector sets, where the search runs inside Redis. Both pass the same test suite, and their scores agree to within 0.000001.</li>

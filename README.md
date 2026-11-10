@@ -69,6 +69,8 @@ After each weekly project ships:
 
 1. **Projects** (`dialog#work` in `index.html`): add a card for the new project, with two or
    three highlights that are facts and results, not adjectives.
+   Give it one real visual: a screenshot, a chart that shows a finding, or a few lines of real
+   terminal output (`.shot` with an image in `assets/work/`, or `.console`). Nothing decorative.
 2. **In progress** (`dialog#progress`): move the "Up next" project into "Shipped", and name
    the next one.
 3. **Selected work** (`section.selected`, on the page itself): swap a card in when the new
