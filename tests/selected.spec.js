@@ -70,3 +70,15 @@ test("no screenshot or terminal output spills out of its card", async ({ page })
   expect(spilling).toBe(0)
 })
 
+
+test("every project in the work section is a complete entry in a list", async ({ page }) => {
+  await page.goto("/")
+  await page.locator('section.selected button[data-open="work"]').click()
+  const dialog = page.locator("dialog#work")
+  const names = await dialog.locator(".project-name").count()
+  expect(names).toBeGreaterThan(10)
+  expect(await dialog.locator(".projects > li").count()).toBe(names)
+  expect(await dialog.locator(".projects > li > .project-name").count()).toBe(names)
+  expect(await dialog.locator(".highlights").count()).toBe(await dialog.locator(".projects > li > .highlights").count())
+  expect(await dialog.locator(".tags").count()).toBe(await dialog.locator(".projects > li > .tags").count())
+})
