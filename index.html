@@ -233,7 +233,7 @@
         </li>
         <li>
           <a class="project-name" href="https://github.com/domaindrivendev/Swashbuckle.AspNetCore/pull/4245" target="_blank" rel="noopener">Swashbuckle.AspNetCore</a>
-          <p>Fixed three bugs in Swashbuckle, the Swagger and OpenAPI library for ASP.NET Core, all in issues open since 2022: two crashes with inheritance turned on, and sets documented without their rule. All three merged.</p>
+          <p>Fixed three bugs in Swashbuckle, the Swagger and OpenAPI library for ASP.NET Core, all in issues open since 2022: two crashes with inheritance turned on, and sets documented without their rule. All three merged, and shipped in v11.0.0.</p>
           <ul class="highlights">
             <li>A generic subclass such as <code>Response&lt;T&gt;</code> broke document generation: subtype discovery returned open generic types, which can't have a schema of their own. It now skips them, and closed subtypes are still found.</li>
             <li>A private or internal member marked <code>[JsonProperty]</code> crashed generation with Newtonsoft.Json. The maintainer pushed back on my first fix, which widened how members were found, so I narrowed it to the crash and added the snapshot test he asked for. He approved and merged it.</li>
