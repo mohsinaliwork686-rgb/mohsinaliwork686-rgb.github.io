@@ -233,11 +233,12 @@
         </li>
         <li>
           <a class="project-name" href="https://github.com/domaindrivendev/Swashbuckle.AspNetCore/pull/4245" target="_blank" rel="noopener">Swashbuckle.AspNetCore</a>
-          <p>Fixed four bugs in Swashbuckle, the Swagger and OpenAPI library for ASP.NET Core: two crashes with inheritance turned on, and two kinds of set documented without their rule, three of them in issues open since 2022. All four merged; the first three shipped in v11.0.0.</p>
+          <p>Fixed five bugs in Swashbuckle, the Swagger and OpenAPI library for ASP.NET Core: two crashes with inheritance turned on, two kinds of set documented without their rule, and filter edits that piled up on every request, a bug open since 2020. All five merged; the first three shipped in v11.0.0.</p>
           <ul class="highlights">
             <li>A generic subclass such as <code>Response&lt;T&gt;</code> broke document generation: subtype discovery returned open generic types, which can't have a schema of their own. It now skips them, and closed subtypes are still found.</li>
             <li>A private or internal member marked <code>[JsonProperty]</code> crashed generation with Newtonsoft.Json. The maintainer pushed back on my first fix, which widened how members were found, so I narrowed it to the crash and added the snapshot test he asked for. He approved and merged it.</li>
             <li>A property declared as <code>IReadOnlySet&lt;T&gt;</code> was documented as a plain array, without the <code>uniqueItems</code> rule that <code>ISet&lt;T&gt;</code> gets. Merged within half an hour of opening. <code>IImmutableSet&lt;T&gt;</code> had the same gap, which I fixed in a follow-up, tested on .NET 11 and 10, and merged 14 minutes after opening.</li>
+            <li>A document filter that edited the document's <code>Info</code> was editing the configured one, so its changes piled up on every request. Each document now gets its own copy. The maintainer asked for two small changes, and merged it the same day.</li>
             <li>Tests for both serializers and both inheritance options, with snapshots of the generated documents, on .NET 8, 9 and 10.</li>
           </ul>
           <span class="tags">C# · .NET · open source</span>
@@ -245,6 +246,7 @@
           <a class="more" href="https://github.com/domaindrivendev/Swashbuckle.AspNetCore/pull/4244" target="_blank" rel="noopener">See #4244 <span aria-hidden="true">&rarr;</span></a>
           <a class="more" href="https://github.com/domaindrivendev/Swashbuckle.AspNetCore/pull/4246" target="_blank" rel="noopener">See #4246 <span aria-hidden="true">&rarr;</span></a>
           <a class="more" href="https://github.com/domaindrivendev/Swashbuckle.AspNetCore/pull/4272" target="_blank" rel="noopener">See #4272 <span aria-hidden="true">&rarr;</span></a>
+          <a class="more" href="https://github.com/domaindrivendev/Swashbuckle.AspNetCore/pull/4273" target="_blank" rel="noopener">See #4273 <span aria-hidden="true">&rarr;</span></a>
         </li>
         <li>
           <a class="project-name" href="https://github.com/dotansimha/graphql-code-generator/pull/11106" target="_blank" rel="noopener">graphql-code-generator</a>
