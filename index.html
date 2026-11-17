@@ -213,34 +213,45 @@
   <dialog id="work" aria-labelledby="work-title">
     <div class="dialog-body">
       <header class="dialog-head">
-        <h2 id="work-title">Projects</h2>
+        <h2 id="work-title">Projects and contributions</h2>
         <button type="button" class="close" data-close>Close</button>
+        <nav class="jump" aria-label="Sections">
+          <a href="#work-contributions" data-jump>Contributions <span>12 merged</span></a>
+          <a href="#work-projects" data-jump>My projects <span>7</span></a>
+          <a href="#work-at-work" data-jump>At work <span>3</span></a>
+        </nav>
       </header>
       <p class="dialog-lede">Fixes merged into widely used open-source libraries, the projects I am building in public, one finished project a week, and the systems I build at work.</p>
 
-      <h3>Contributions</h3>
+      <h3 id="work-contributions" tabindex="-1">Contributions</h3>
       <ul class="projects">
         <li>
           <a class="project-name" href="https://github.com/StackExchange/StackExchange.Redis/pull/3313" target="_blank" rel="noopener">StackExchange.Redis</a>
           <p>Fixed a bug in StackExchange.Redis, the most widely used Redis client for .NET: commands sent in a batch never showed up in its profiler. Merged.</p>
-          <ul class="highlights">
-            <li>Batches skipped the one place where profiling was switched on. Moved that step into a method both paths share, so they cannot drift apart again. The issue had been open since 2022.</li>
-            <li>Reproduced it first, then added a test that fails without the fix and passes with it, and ran every other test that uses batches. A maintainer approved it within half an hour and merged it the same day, and it shipped in release 3.4.29.</li>
-            <li>Also reviewed the maintainer's own fix for an IPv6 parsing bug and found a place it missed, where a server's new address would silently vanish. The maintainer fixed it, with tests, before merging.</li>
-          </ul>
+          <details class="details">
+            <summary>Details</summary>
+            <ul class="highlights">
+              <li>Batches skipped the one place where profiling was switched on. Moved that step into a method both paths share, so they cannot drift apart again. The issue had been open since 2022.</li>
+              <li>Reproduced it first, then added a test that fails without the fix and passes with it, and ran every other test that uses batches. A maintainer approved it within half an hour and merged it the same day, and it shipped in release 3.4.29.</li>
+              <li>Also reviewed the maintainer's own fix for an IPv6 parsing bug and found a place it missed, where a server's new address would silently vanish. The maintainer fixed it, with tests, before merging.</li>
+            </ul>
+          </details>
           <span class="tags">C# · .NET · open source</span>
           <a class="more" href="https://github.com/StackExchange/StackExchange.Redis/pull/3313" target="_blank" rel="noopener">See the pull request <span aria-hidden="true">&rarr;</span></a>
         </li>
         <li>
           <a class="project-name" href="https://github.com/domaindrivendev/Swashbuckle.AspNetCore/pull/4245" target="_blank" rel="noopener">Swashbuckle.AspNetCore</a>
           <p>Fixed five bugs in Swashbuckle, the Swagger and OpenAPI library for ASP.NET Core: two crashes with inheritance turned on, two kinds of set documented without their rule, and filter edits that piled up on every request, a bug open since 2020. All five merged; the first three shipped in v11.0.0.</p>
-          <ul class="highlights">
-            <li>A generic subclass such as <code>Response&lt;T&gt;</code> broke document generation: subtype discovery returned open generic types, which can't have a schema of their own. It now skips them, and closed subtypes are still found.</li>
-            <li>A private or internal member marked <code>[JsonProperty]</code> crashed generation with Newtonsoft.Json. The maintainer pushed back on my first fix, which widened how members were found, so I narrowed it to the crash and added the snapshot test they asked for, and the PR was approved and merged.</li>
-            <li>A property declared as <code>IReadOnlySet&lt;T&gt;</code> was documented as a plain array, without the <code>uniqueItems</code> rule that <code>ISet&lt;T&gt;</code> gets. Merged within half an hour of opening. <code>IImmutableSet&lt;T&gt;</code> had the same gap, which I fixed in a follow-up, tested on .NET 11 and 10, and merged 14 minutes after opening.</li>
-            <li>A document filter that edited the document's <code>Info</code> was editing the configured one, so its changes piled up on every request. Each document now gets its own copy. The maintainer asked for two small changes, and merged it the same day.</li>
-            <li>Tests for both serializers and both inheritance options, with snapshots of the generated documents, on .NET 8, 9 and 10.</li>
-          </ul>
+          <details class="details">
+            <summary>Details</summary>
+            <ul class="highlights">
+              <li>A generic subclass such as <code>Response&lt;T&gt;</code> broke document generation: subtype discovery returned open generic types, which can't have a schema of their own. It now skips them, and closed subtypes are still found.</li>
+              <li>A private or internal member marked <code>[JsonProperty]</code> crashed generation with Newtonsoft.Json. The maintainer pushed back on my first fix, which widened how members were found, so I narrowed it to the crash and added the snapshot test they asked for, and the PR was approved and merged.</li>
+              <li>A property declared as <code>IReadOnlySet&lt;T&gt;</code> was documented as a plain array, without the <code>uniqueItems</code> rule that <code>ISet&lt;T&gt;</code> gets. Merged within half an hour of opening. <code>IImmutableSet&lt;T&gt;</code> had the same gap, which I fixed in a follow-up, tested on .NET 11 and 10, and merged 14 minutes after opening.</li>
+              <li>A document filter that edited the document's <code>Info</code> was editing the configured one, so its changes piled up on every request. Each document now gets its own copy. The maintainer asked for two small changes, and merged it the same day.</li>
+              <li>Tests for both serializers and both inheritance options, with snapshots of the generated documents, on .NET 8, 9 and 10.</li>
+            </ul>
+          </details>
           <span class="tags">C# · .NET · open source</span>
           <a class="more" href="https://github.com/domaindrivendev/Swashbuckle.AspNetCore/pull/4245" target="_blank" rel="noopener">See #4245 <span aria-hidden="true">&rarr;</span></a>
           <a class="more" href="https://github.com/domaindrivendev/Swashbuckle.AspNetCore/pull/4244" target="_blank" rel="noopener">See #4244 <span aria-hidden="true">&rarr;</span></a>
@@ -251,21 +262,27 @@
         <li>
           <a class="project-name" href="https://github.com/TestableIO/System.IO.Abstractions/pull/1591" target="_blank" rel="noopener">System.IO.Abstractions</a>
           <p>Fixed a bug in System.IO.Abstractions, the .NET library for testing code that uses the file system: on Linux and macOS its mock file system named the root drive <code>/:\</code> and listed it twice. Merged, and shipped the same day in v23.0.1.</p>
-          <ul class="highlights">
-            <li>A shortcut meant for one-letter drive names such as <code>C</code> also caught <code>/</code>, so the Unix root got a Windows-style name. It now applies to letters only, the same rule the real <code>DriveInfo</code> uses. The issue had been open since 2022.</li>
-            <li>Two Unix-only tests that fail without the fix, and the full suite on .NET 8, 9, 10 and 11. The maintainer approved and merged it about half an hour after I opened it.</li>
-          </ul>
+          <details class="details">
+            <summary>Details</summary>
+            <ul class="highlights">
+              <li>A shortcut meant for one-letter drive names such as <code>C</code> also caught <code>/</code>, so the Unix root got a Windows-style name. It now applies to letters only, the same rule the real <code>DriveInfo</code> uses. The issue had been open since 2022.</li>
+              <li>Two Unix-only tests that fail without the fix, and the full suite on .NET 8, 9, 10 and 11. The maintainer approved and merged it about half an hour after I opened it.</li>
+            </ul>
+          </details>
           <span class="tags">C# · .NET · open source</span>
           <a class="more" href="https://github.com/TestableIO/System.IO.Abstractions/pull/1591" target="_blank" rel="noopener">See the pull request <span aria-hidden="true">&rarr;</span></a>
         </li>
         <li>
           <a class="project-name" href="https://github.com/dotansimha/graphql-code-generator/pull/11106" target="_blank" rel="noopener">graphql-code-generator</a>
           <p>Fixed two bugs in GraphQL Code Generator, which writes TypeScript types from GraphQL, both open since 2024: a file that didn't compile for a project with no queries yet, and enums typed as <code>null</code> in resolvers. Both merged.</p>
-          <ul class="highlights">
-            <li>The generator always wrote the <code>TypedDocumentString</code> class, but dropped the import it needs when there were no documents. It now keeps the import whenever it writes the class. The issue had been open since 2024.</li>
-            <li>Compiled the whole generated output with <code>tsc --strict</code> on five configurations: each went from three errors to none, and the output of every other mode stayed identical. Merged the next day and shipped the same day in <code>client-preset</code> 7.0.0.</li>
-            <li>An enum that <code>enumValues</code> maps to an object came out as <code>null</code> in the resolver types, so its resolvers could only return <code>null</code>. It now uses the generated enum, with the prefix and namespace options respected. Two of the new tests compile the output under strict TypeScript, which is how the <code>null</code> had slipped past the existing ones. Merged two days after opening and shipped the same day in <code>typescript-resolvers</code> 7.0.1.</li>
-          </ul>
+          <details class="details">
+            <summary>Details</summary>
+            <ul class="highlights">
+              <li>The generator always wrote the <code>TypedDocumentString</code> class, but dropped the import it needs when there were no documents. It now keeps the import whenever it writes the class. The issue had been open since 2024.</li>
+              <li>Compiled the whole generated output with <code>tsc --strict</code> on five configurations: each went from three errors to none, and the output of every other mode stayed identical. Merged the next day and shipped the same day in <code>client-preset</code> 7.0.0.</li>
+              <li>An enum that <code>enumValues</code> maps to an object came out as <code>null</code> in the resolver types, so its resolvers could only return <code>null</code>. It now uses the generated enum, with the prefix and namespace options respected. Two of the new tests compile the output under strict TypeScript, which is how the <code>null</code> had slipped past the existing ones. Merged two days after opening and shipped the same day in <code>typescript-resolvers</code> 7.0.1.</li>
+            </ul>
+          </details>
           <span class="tags">TypeScript · GraphQL · open source</span>
           <a class="more" href="https://github.com/dotansimha/graphql-code-generator/pull/11106" target="_blank" rel="noopener">See #11106 <span aria-hidden="true">&rarr;</span></a>
           <a class="more" href="https://github.com/dotansimha/graphql-code-generator/pull/11116" target="_blank" rel="noopener">See #11116 <span aria-hidden="true">&rarr;</span></a>
@@ -273,11 +290,14 @@
         <li>
           <a class="project-name" href="https://github.com/authlib/authlib/pull/1009" target="_blank" rel="noopener">Authlib</a>
           <p>Fixed two bugs in how Authlib, a Python library for OAuth and OpenID Connect, renews expired tokens. Both merged.</p>
-          <ul class="highlights">
-            <li>Asking for a token with an explicit <code>client_credentials</code> grant never stored the grant, so once the token expired the next request failed instead of fetching a new one. The issue had been open since 2024.</li>
-            <li>The fix is in the shared client, so it covers the Requests session and both HTTPX clients, with a test for each that fails without it. Merged within nine hours of opening.</li>
-            <li>A renewed token lost the app's <code>access_token_params</code>, so a server that requires a parameter such as <code>audience</code> rejected the renewal. Every automatic fetch now sends them, and a server's metadata document can't set them. Tested on the Requests session, both HTTPX clients, Flask and Starlette.</li>
-          </ul>
+          <details class="details">
+            <summary>Details</summary>
+            <ul class="highlights">
+              <li>Asking for a token with an explicit <code>client_credentials</code> grant never stored the grant, so once the token expired the next request failed instead of fetching a new one. The issue had been open since 2024.</li>
+              <li>The fix is in the shared client, so it covers the Requests session and both HTTPX clients, with a test for each that fails without it. Merged within nine hours of opening.</li>
+              <li>A renewed token lost the app's <code>access_token_params</code>, so a server that requires a parameter such as <code>audience</code> rejected the renewal. Every automatic fetch now sends them, and a server's metadata document can't set them. Tested on the Requests session, both HTTPX clients, Flask and Starlette.</li>
+            </ul>
+          </details>
           <span class="tags">Python · OAuth · open source</span>
           <a class="more" href="https://github.com/authlib/authlib/pull/1009" target="_blank" rel="noopener">See #1009 <span aria-hidden="true">&rarr;</span></a>
           <a class="more" href="https://github.com/authlib/authlib/pull/1026" target="_blank" rel="noopener">See #1026 <span aria-hidden="true">&rarr;</span></a>
@@ -285,61 +305,73 @@
         <li>
           <a class="project-name" href="https://github.com/redis/redis-py/pull/4466" target="_blank" rel="noopener">redis-py</a>
           <p>Documented the connection pool limit and <code>BlockingConnectionPool</code> in redis-py, the Python client for Redis. Merged.</p>
-          <ul class="highlights">
-            <li>Found while building llm-router: since redis-py 8.0 a pool holds 100 connections and fails at once when they are all busy, and the docs did not say so.</li>
-            <li>Opened the issue, agreed the scope with a maintainer, and went through two rounds of review: no new warnings in the docs build, and a broken example in the existing docs fixed along the way.</li>
-          </ul>
+          <details class="details">
+            <summary>Details</summary>
+            <ul class="highlights">
+              <li>Found while building llm-router: since redis-py 8.0 a pool holds 100 connections and fails at once when they are all busy, and the docs did not say so.</li>
+              <li>Opened the issue, agreed the scope with a maintainer, and went through two rounds of review: no new warnings in the docs build, and a broken example in the existing docs fixed along the way.</li>
+            </ul>
+          </details>
           <span class="tags">Python · documentation · open source</span>
           <a class="more" href="https://github.com/redis/redis-py/pull/4466" target="_blank" rel="noopener">See the pull request <span aria-hidden="true">&rarr;</span></a>
         </li>
       </ul>
 
-      <h3>Open source</h3>
+      <h3 id="work-projects" tabindex="-1">My projects</h3>
       <ul class="projects">
         <li>
           <a class="project-name" href="https://github.com/mohsinaliwork686-rgb/promptlint" target="_blank" rel="noopener">promptlint</a>
           <p>A linter for LLM prompt templates.</p>
-          <figure class="console" aria-label="Real output from promptlint"><pre><span class="prompt">$ promptlint examples</span>
+          <details class="details">
+            <summary>Details</summary>
+            <figure class="console" aria-label="Real output from promptlint"><pre><span class="prompt">$ promptlint examples</span>
 examples/agent.py:4:20: error PL004 OpenAI API key found in prompt text (sk-p...44 chars)
 examples/agent.py:6:15: error PL002 template uses {max_words} but it is never supplied
 examples/classify.md:10:1: error PL001 '{"category": "&lt;one of the above&gt;", "c...' is not a valid placeholder
 
 Found 4 errors and 7 warnings in 3 files scanned. 3 fixable with --fix.</pre></figure>
-          <ul class="highlights">
-            <li>Finds the bugs that only show up in production: a JSON example that breaks <code>.format()</code>, a variable the code never passes, an API key left in a prompt, user input pasted straight into instructions.</li>
-            <li>Reads Python, YAML and Markdown, reports the exact line and column, and has an autofix that checks the text is still where it expects before changing anything.</li>
-            <li>No runtime dependencies. Tested on Linux, macOS and Windows across three Python versions.</li>
-          </ul>
+            <ul class="highlights">
+              <li>Finds the bugs that only show up in production: a JSON example that breaks <code>.format()</code>, a variable the code never passes, an API key left in a prompt, user input pasted straight into instructions.</li>
+              <li>Reads Python, YAML and Markdown, reports the exact line and column, and has an autofix that checks the text is still where it expects before changing anything.</li>
+              <li>No runtime dependencies. Tested on Linux, macOS and Windows across three Python versions.</li>
+            </ul>
+          </details>
           <span class="tags">Python · static analysis</span>
           <a class="more" href="https://github.com/mohsinaliwork686-rgb/promptlint#install" target="_blank" rel="noopener">Run it yourself <span aria-hidden="true">&rarr;</span></a>
         </li>
         <li>
           <a class="project-name" href="https://github.com/mohsinaliwork686-rgb/ragsweep" target="_blank" rel="noopener">ragsweep</a>
           <p>Measures which retrieval settings actually find the right passage.</p>
-          <figure class="console" aria-label="Real output from ragsweep"><pre><span class="prompt">$ ragsweep run</span>
+          <details class="details">
+            <summary>Details</summary>
+            <figure class="console" aria-label="Real output from ragsweep"><pre><span class="prompt">$ ragsweep run</span>
 17 documents, 31 questions, 54 runs
 retriever  strategy  chunk  ovl   r@1   r@3   r@5  r@10   MRR
 dense      fixed       256    0  0.87  0.92  0.97  0.98  0.95  *
 hybrid     sentence    256    0  0.84  0.95  0.98  1.00  0.95
 bm25       fixed       256    0  0.68  0.92  0.94  1.00  0.84
 Best: dense / fixed / chunk 256 / overlap 0</pre></figure>
-          <ul class="highlights">
-            <li>Sweeps chunk size, overlap, embedding models and BM25 keyword search against a labelled question set, and ranks every combination.</li>
-            <li>On its example corpus, keyword search matched embeddings on four of five question types. Embeddings only pulled ahead when a question's wording did not match the document.</li>
-            <li>Shares work across the sweep, so 54 runs take 1m 41s the first time and 1.3s after that.</li>
-          </ul>
+            <ul class="highlights">
+              <li>Sweeps chunk size, overlap, embedding models and BM25 keyword search against a labelled question set, and ranks every combination.</li>
+              <li>On its example corpus, keyword search matched embeddings on four of five question types. Embeddings only pulled ahead when a question's wording did not match the document.</li>
+              <li>Shares work across the sweep, so 54 runs take 1m 41s the first time and 1.3s after that.</li>
+            </ul>
+          </details>
           <span class="tags">Python · embeddings · evaluation</span>
           <a class="more" href="https://github.com/mohsinaliwork686-rgb/ragsweep#try-it-in-two-minutes" target="_blank" rel="noopener">Run it yourself <span aria-hidden="true">&rarr;</span></a>
         </li>
         <li>
           <a class="project-name" href="https://github.com/mohsinaliwork686-rgb/contextlab" target="_blank" rel="noopener">contextlab</a>
           <p>Plans a context window before it overflows.</p>
-          <figure class="shot"><img src="assets/work/contextlab.jpg" width="1120" height="473" loading="lazy" decoding="async" alt="contextlab planning a request: tokens sent, cost, how much of the window is used, and which part of the prompt takes how much"></figure>
-          <ul class="highlights">
-            <li>Shows what fits in a model's window, what each part of the request costs, and exactly where an over-long request gets cut.</li>
-            <li>Runs entirely in the browser. Token counts that are estimates are labelled as estimates, never passed off as exact.</li>
-            <li>Any setup can be shared as a compressed link.</li>
-          </ul>
+          <details class="details">
+            <summary>Details</summary>
+            <figure class="shot"><img src="assets/work/contextlab.jpg" width="1120" height="473" loading="lazy" decoding="async" alt="contextlab planning a request: tokens sent, cost, how much of the window is used, and which part of the prompt takes how much"></figure>
+            <ul class="highlights">
+              <li>Shows what fits in a model's window, what each part of the request costs, and exactly where an over-long request gets cut.</li>
+              <li>Runs entirely in the browser. Token counts that are estimates are labelled as estimates, never passed off as exact.</li>
+              <li>Any setup can be shared as a compressed link.</li>
+            </ul>
+          </details>
           <span class="tags">TypeScript · Next.js</span>
           <a class="more" href="https://mohsinaliwork686-rgb.github.io/contextlab/" target="_blank" rel="noopener">Try it live <span aria-hidden="true">&rarr;</span></a>
           <a class="more" href="https://github.com/mohsinaliwork686-rgb/contextlab#run-it" target="_blank" rel="noopener">Run it yourself <span aria-hidden="true">&rarr;</span></a>
@@ -347,36 +379,42 @@ Best: dense / fixed / chunk 256 / overlap 0</pre></figure>
         <li>
           <a class="project-name" href="https://github.com/mohsinaliwork686-rgb/llm-router" target="_blank" rel="noopener">llm-router</a>
           <p>One endpoint for many language models, with a spending cap that holds under concurrent load.</p>
-          <figure class="console" aria-label="Real output from llm-router&#x27;s demo"><pre><span class="prompt">$ docker compose run --rm demo</span>
+          <details class="details">
+            <summary>Details</summary>
+            <figure class="console" aria-label="Real output from llm-router&#x27;s demo"><pre><span class="prompt">$ docker compose run --rm demo</span>
 1. Fallback: ask the "resilient" policy for an answer
    x-router-model       budget
    x-router-attempts    4
 2. The cap: ten expensive requests at the same moment
    answered     3
    refused      7  (HTTP 429, before reaching the model)</pre></figure>
-          <ul class="highlights">
-            <li>Speaks the OpenAI API, so an app adopts it by changing its base URL. Routes each request by policy and falls back when a provider fails: retries what can recover, skips a revoked key, and stops on a request every model would refuse.</li>
-            <li>Reserves each call's worst-case cost before it starts, in one atomic step in Redis, so several routers share one cap. In the demo, ten simultaneous $0.30 requests against a $1 cap: three answered, seven refused before reaching a model.</li>
-            <li>236 tests, including a deliberately racy store that the concurrency test is shown to catch. CI on Python 3.11 to 3.14 with a real Redis, on macOS and Windows, and the Docker demo itself.</li>
-          </ul>
+            <ul class="highlights">
+              <li>Speaks the OpenAI API, so an app adopts it by changing its base URL. Routes each request by policy and falls back when a provider fails: retries what can recover, skips a revoked key, and stops on a request every model would refuse.</li>
+              <li>Reserves each call's worst-case cost before it starts, in one atomic step in Redis, so several routers share one cap. In the demo, ten simultaneous $0.30 requests against a $1 cap: three answered, seven refused before reaching a model.</li>
+              <li>236 tests, including a deliberately racy store that the concurrency test is shown to catch. CI on Python 3.11 to 3.14 with a real Redis, on macOS and Windows, and the Docker demo itself.</li>
+            </ul>
+          </details>
           <span class="tags">Python · FastAPI · Redis</span>
           <a class="more" href="https://github.com/mohsinaliwork686-rgb/llm-router#try-it-in-a-minute-with-no-api-keys" target="_blank" rel="noopener">Run it yourself <span aria-hidden="true">&rarr;</span></a>
         </li>
         <li>
           <a class="project-name" href="https://github.com/mohsinaliwork686-rgb/helmdrift" target="_blank" rel="noopener">helmdrift</a>
           <p>Shows what was changed by hand in a Kubernetes cluster, compared with its Helm chart, and who changed it.</p>
-          <figure class="console" aria-label="Real output from helmdrift"><pre><span class="prompt">$ helmdrift --release shop --namespace shop</span>
+          <details class="details">
+            <summary>Details</summary>
+            <figure class="console" aria-label="Real output from helmdrift"><pre><span class="prompt">$ helmdrift --release shop --namespace shop</span>
 Deployment/shop-web
   ~ spec.replicas
       chart 2  -&gt;  live 4
       owned by kubectl (scale)
   + spec.template.spec.containers[name=web].env[name=DEBUG]
       live {"name": "DEBUG", "value": "true"}</pre></figure>
-          <ul class="highlights">
-            <li>Filters out the noise that makes a raw diff useless: bookkeeping, values the API server filled in, and values written another way, such as 0.5 CPU and 500m.</li>
-            <li>Names the tool behind each change (kubectl-edit, kubectl-set, kubectl scale), read from the cluster's own record of who set each field. With Helm 4, those are the fields that block the next upgrade.</li>
-            <li>Tested on objects captured from a real cluster before and after drift. CI runs an end-to-end check on a real kind cluster, and the tests on Linux, macOS and Windows.</li>
-          </ul>
+            <ul class="highlights">
+              <li>Filters out the noise that makes a raw diff useless: bookkeeping, values the API server filled in, and values written another way, such as 0.5 CPU and 500m.</li>
+              <li>Names the tool behind each change (kubectl-edit, kubectl-set, kubectl scale), read from the cluster's own record of who set each field. With Helm 4, those are the fields that block the next upgrade.</li>
+              <li>Tested on objects captured from a real cluster before and after drift. CI runs an end-to-end check on a real kind cluster, and the tests on Linux, macOS and Windows.</li>
+            </ul>
+          </details>
           <span class="tags">Python · Kubernetes · Helm</span>
           <a class="more" href="https://github.com/mohsinaliwork686-rgb/helmdrift#what-it-looks-like" target="_blank" rel="noopener">See it run <span aria-hidden="true">&rarr;</span></a>
           <a class="more" href="https://github.com/mohsinaliwork686-rgb/helmdrift#install" target="_blank" rel="noopener">Run it yourself <span aria-hidden="true">&rarr;</span></a>
@@ -384,12 +422,15 @@ Deployment/shop-web
         <li>
           <a class="project-name" href="https://github.com/mohsinaliwork686-rgb/evalboard" target="_blank" rel="noopener">evalboard</a>
           <p>Compares two eval runs of an AI system case by case, and shows exactly what got worse.</p>
-          <figure class="shot"><img src="assets/work/evalboard.jpg" width="1120" height="461" loading="lazy" decoding="async" alt="evalboard comparing two runs: 5 cases regressed while the mean score rose from 0.710 to 0.740, with a bar chart of every case&#x27;s change"></figure>
-          <ul class="highlights">
-            <li>Puts regressions first, then fixes, then every score that moved, with a chart and a tag filter that make a cluster of failures stand out where the average hides it.</li>
-            <li>Reads the results file ragsweep writes. On ragsweep's real runs, doubling the chunk size broke two questions and fixed two others while the pass rate stayed at exactly 90.3%.</li>
-            <li>Runs entirely in the browser, and a browser test proves a loaded file is never sent anywhere. A bad file gets every problem listed with its exact place. CI on three operating systems, with browser tests at desktop and phone sizes.</li>
-          </ul>
+          <details class="details">
+            <summary>Details</summary>
+            <figure class="shot"><img src="assets/work/evalboard.jpg" width="1120" height="461" loading="lazy" decoding="async" alt="evalboard comparing two runs: 5 cases regressed while the mean score rose from 0.710 to 0.740, with a bar chart of every case&#x27;s change"></figure>
+            <ul class="highlights">
+              <li>Puts regressions first, then fixes, then every score that moved, with a chart and a tag filter that make a cluster of failures stand out where the average hides it.</li>
+              <li>Reads the results file ragsweep writes. On ragsweep's real runs, doubling the chunk size broke two questions and fixed two others while the pass rate stayed at exactly 90.3%.</li>
+              <li>Runs entirely in the browser, and a browser test proves a loaded file is never sent anywhere. A bad file gets every problem listed with its exact place. CI on three operating systems, with browser tests at desktop and phone sizes.</li>
+            </ul>
+          </details>
           <span class="tags">TypeScript · Next.js · Recharts</span>
           <a class="more" href="https://mohsinaliwork686-rgb.github.io/evalboard/" target="_blank" rel="noopener">Try it live <span aria-hidden="true">&rarr;</span></a>
           <a class="more" href="https://github.com/mohsinaliwork686-rgb/evalboard#run-it" target="_blank" rel="noopener">Run it yourself <span aria-hidden="true">&rarr;</span></a>
@@ -397,19 +438,22 @@ Deployment/shop-web
         <li>
           <a class="project-name" href="https://github.com/mohsinaliwork686-rgb/semcache" target="_blank" rel="noopener">semcache</a>
           <p>Caches model answers by meaning rather than exact wording, and measures exactly where that goes wrong.</p>
-          <figure class="shot"><img src="assets/work/semcache.png" width="1120" height="476" loading="lazy" decoding="async" alt="semcache&#x27;s benchmark for two embedding models: the share of questions answered right and wrong from the cache at each similarity threshold. Wrong answers remain even at 0.99"></figure>
-          <ul class="highlights">
-            <li>One decorator on an existing function. It checks the exact text first, never mixes answers between models or prompts, and if the cache fails the call still runs.</li>
-            <li>Stores in memory or in Redis 8 vector sets, where the search runs inside Redis. Both pass the same test suite, and their scores agree to within 0.000001.</li>
-            <li>Benchmarked on 250 labelled questions, written before any embedding code. "Orders over $35" and "under $35" score 0.995, so on one model every answer from the cache is wrong from a threshold of 0.96 up. Results are reported per kind of near-miss, so an average can't hide it.</li>
-          </ul>
+          <details class="details">
+            <summary>Details</summary>
+            <figure class="shot"><img src="assets/work/semcache.png" width="1120" height="476" loading="lazy" decoding="async" alt="semcache&#x27;s benchmark for two embedding models: the share of questions answered right and wrong from the cache at each similarity threshold. Wrong answers remain even at 0.99"></figure>
+            <ul class="highlights">
+              <li>One decorator on an existing function. It checks the exact text first, never mixes answers between models or prompts, and if the cache fails the call still runs.</li>
+              <li>Stores in memory or in Redis 8 vector sets, where the search runs inside Redis. Both pass the same test suite, and their scores agree to within 0.000001.</li>
+              <li>Benchmarked on 250 labelled questions, written before any embedding code. "Orders over $35" and "under $35" score 0.995, so on one model every answer from the cache is wrong from a threshold of 0.96 up. Results are reported per kind of near-miss, so an average can't hide it.</li>
+            </ul>
+          </details>
           <span class="tags">Python · embeddings · Redis</span>
           <a class="more" href="https://github.com/mohsinaliwork686-rgb/semcache#what-the-benchmark-found" target="_blank" rel="noopener">See the results <span aria-hidden="true">&rarr;</span></a>
           <a class="more" href="https://github.com/mohsinaliwork686-rgb/semcache#try-it" target="_blank" rel="noopener">Run it yourself <span aria-hidden="true">&rarr;</span></a>
         </li>
       </ul>
 
-      <h3>At work</h3>
+      <h3 id="work-at-work" tabindex="-1">At work</h3>
       <ul class="projects">
         <li>
           <strong class="project-name">AI Refinery</strong>

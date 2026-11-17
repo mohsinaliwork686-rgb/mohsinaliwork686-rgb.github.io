@@ -208,6 +208,21 @@
     })
   }
 
+  // A link to a part of the same section scrolls the section itself, so the part's heading
+  // lands just below the sticky header, and the address bar is left alone. Focus moves to the
+  // heading, so the keyboard carries on from there.
+  document.addEventListener("click", (event) => {
+    const link = event.target.closest("a[data-jump]")
+    const dialog = link?.closest("dialog")
+    const heading = link && document.getElementById(link.getAttribute("href").slice(1))
+    if (!dialog || !heading) return
+    event.preventDefault()
+    const head = dialog.querySelector(".dialog-head")
+    const top = heading.getBoundingClientRect().top - dialog.getBoundingClientRect().top + dialog.scrollTop
+    dialog.scrollTo({ top: top - head.offsetHeight - 8, behavior: reduceMotion.matches ? "auto" : "smooth" })
+    heading.focus({ preventScroll: true })
+  })
+
   // ---------------------------------------------------------------------- copy email
 
   const announcer = document.querySelector("[data-announce]")

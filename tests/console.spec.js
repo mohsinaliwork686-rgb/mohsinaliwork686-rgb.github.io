@@ -197,6 +197,8 @@ test.describe("sections", () => {
   })
 
   test("closes when the backdrop is clicked", async ({ page }) => {
+    // On a phone a section fills the screen, so there is no backdrop; Close and Back remain.
+    test.skip(page.viewportSize().width <= 560, "no backdrop at phone width")
     await page.goto("/")
     await page.locator('nav button[data-open="about"]').click()
     const dialog = page.locator("dialog#about")

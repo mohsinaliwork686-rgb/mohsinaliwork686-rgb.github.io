@@ -373,6 +373,13 @@ dialog {
   border: 1px solid var(--line); border-radius: 16px;
   background: #17171a; color: var(--text);
 }
+/* On a phone, a section takes the whole screen, so the text gets the full width. */
+@media (max-width: 560px) {
+  dialog {
+    width: 100%; max-width: 100%; height: 100dvh; max-height: 100dvh;
+    margin: 0; border: 0; border-radius: 0;
+  }
+}
 dialog::backdrop { background: rgba(5, 5, 7, 0.72); backdrop-filter: blur(4px); }
 dialog[open] { animation: rise 220ms cubic-bezier(0.2, 0.9, 0.3, 1); }
 @keyframes rise { from { opacity: 0; transform: translateY(10px); } }
@@ -380,17 +387,42 @@ dialog[open] { animation: rise 220ms cubic-bezier(0.2, 0.9, 0.3, 1); }
 .dialog-body { padding: 0 clamp(20px, 4vw, 40px) 36px; }
 .dialog-head {
   position: sticky; top: 0; z-index: 1;
-  display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 14px 16px;
   padding-block: 24px 14px; margin-bottom: 8px;
   background: #17171a; border-bottom: 1px solid var(--line);
 }
-.dialog-head h2 { margin: 0; font-size: 1.6rem; font-weight: 500; letter-spacing: -0.01em; }
+/* The title takes the room that is left, so Close always stays on its row. */
+.dialog-head h2 { flex: 1 1 0; min-width: 0; margin: 0; font-size: 1.6rem; font-weight: 500; letter-spacing: -0.01em; }
 .close {
   background: none; color: var(--text-2); cursor: pointer;
   border: 1px solid rgba(255, 255, 255, 0.18); border-radius: 999px;
   padding: 6px 14px; font: inherit; font-size: 14px;
 }
 .close:hover { color: var(--text); border-color: rgba(255, 255, 255, 0.4); }
+
+/* Links to each part of a long section, kept in the sticky header so they are always in reach. */
+.jump { flex-basis: 100%; display: flex; flex-wrap: wrap; gap: 8px; }
+.jump a {
+  color: var(--text-2); text-decoration: none; font-size: 0.88rem;
+  border: 1px solid rgba(255, 255, 255, 0.14); border-radius: 999px; padding: 4px 12px;
+}
+.jump a span { color: var(--text-3); margin-left: 3px; }
+.jump a:hover { color: var(--text); border-color: rgba(255, 255, 255, 0.35); }
+/* On a phone the links stay on one row, which scrolls sideways, so the header stays short. */
+@media (max-width: 560px) {
+  .dialog-head { padding-block: 18px 12px; }
+  .dialog-head h2 { font-size: 1.3rem; line-height: 1.25; }
+  .jump {
+    flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none;
+    /* Full bleed, so the row scrolls out to the screen edge rather than stopping at the margin. */
+    flex-basis: calc(100% + 2 * clamp(20px, 4vw, 40px));
+    margin-inline: calc(-1 * clamp(20px, 4vw, 40px)); padding-inline: clamp(20px, 4vw, 40px);
+  }
+  .jump::-webkit-scrollbar { display: none; }
+  .jump a { flex: none; font-size: 0.85rem; }
+}
+/* Without the script, the browser's own jump still lands below the sticky header. */
+.dialog-body h3[id] { scroll-margin-top: 150px; }
 
 .dialog-body p { color: var(--text-2); }
 .dialog-lede { margin-top: 16px; }
@@ -412,6 +444,25 @@ a.project-name:hover { color: var(--pink); }
 .highlights { margin: 4px 0 10px; padding-left: 18px; list-style: disc; color: var(--text-2); font-size: 0.95rem; }
 .highlights li { margin-bottom: 6px; }
 .highlights li::marker { color: var(--orange); }
+
+/* Each card stays short: the screenshot and the highlights open on request. */
+.details { margin: 0 0 10px; }
+.details > summary {
+  display: inline-flex; align-items: center; gap: 8px;
+  cursor: pointer; list-style: none;
+  color: var(--text-2); font-size: 0.9rem; padding: 2px 0;
+}
+.details > summary::-webkit-details-marker { display: none; }
+.details > summary::before {
+  content: ""; width: 6px; height: 6px;
+  border-right: 1.5px solid var(--orange); border-bottom: 1.5px solid var(--orange);
+  transform: rotate(-45deg); transition: transform 150ms ease;
+}
+.details[open] > summary::before { transform: rotate(45deg); }
+.details > summary:hover { color: var(--text); }
+.details[open] > summary { margin-bottom: 4px; }
+/* Tags and links share one line, as on the selected work cards, and wrap when there is no room. */
+.dialog-body .projects > li > .tags { display: inline-block; margin: 10px 22px 0 0; }
 .dialog-body code {
   font-family: "Courier New", Courier, monospace; font-size: 0.92em;
   background: rgba(255, 255, 255, 0.07); padding: 1px 5px; border-radius: 4px;
@@ -460,4 +511,5 @@ a.project-name:hover { color: var(--pink); }
   .caret { animation: none; }
   .strip-track { animation: none; }
   dialog[open] { animation: none; }
+  .details > summary::before { transition: none; }
 }
