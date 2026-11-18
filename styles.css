@@ -339,6 +339,7 @@ nav button:hover { color: var(--text); }
 }
 .console .prompt, .console .file { color: var(--text-3); }
 .console .add { color: #93d49a; }
+.console .del { color: #e8a08f; }
 .dialog-body .shot, .dialog-body .console { margin: 10px 0 12px; }
 .dialog-body .console { aspect-ratio: auto; }
 

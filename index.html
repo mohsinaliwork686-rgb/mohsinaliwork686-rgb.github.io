@@ -145,6 +145,12 @@
       <h2 id="selected-title">Selected work</h2>
       <ul class="projects">
         <li>
+          <figure class="shot"><img src="assets/work/rotadesk.jpg" width="1120" height="467" loading="lazy" decoding="async" alt="rotadesk: a manager&#x27;s week at Northside Café, with each day&#x27;s shifts, a warning on a shift outside someone&#x27;s availability, an open shift, and everyone&#x27;s hours against their limit"></figure>
+          <a class="project-name" href="https://github.com/mohsinaliwork686-rgb/rotadesk" target="_blank" rel="noopener">rotadesk</a>
+          <p>Staff scheduling for small businesses, one app for many of them, with each business&#x27;s data kept apart.</p>
+          <span class="tags">C# · ASP.NET Core · PostgreSQL · React · <a href="https://rotadesk.onrender.com" target="_blank" rel="noopener">try it live</a> · <a href="https://github.com/mohsinaliwork686-rgb/rotadesk#try-it" target="_blank" rel="noopener">run it yourself</a></span>
+        </li>
+        <li>
           <figure class="console" aria-label="Real output from llm-router&#x27;s demo"><pre><span class="prompt">$ docker compose run --rm demo</span>
 1. Fallback: ask the "resilient" policy for an answer
    x-router-model       budget
@@ -167,6 +173,17 @@
           <a class="project-name" href="https://github.com/mohsinaliwork686-rgb/semcache" target="_blank" rel="noopener">semcache</a>
           <p>Caches model answers by meaning, with a benchmark that shows where it starts giving wrong answers.</p>
           <span class="tags">Python · embeddings · Redis · <a href="https://github.com/mohsinaliwork686-rgb/semcache#try-it" target="_blank" rel="noopener">run it yourself</a></span>
+        </li>
+        <li>
+          <figure class="console" aria-label="One of the merged changes in Swashbuckle.AspNetCore"><pre><span class="file">SwaggerGen/SchemaGenerator/SchemaGeneratorOptions.cs</span>
+ IEnumerable&lt;Type&gt; DefaultSubTypesSelector(Type baseType)
+     =&gt; baseType.Assembly.GetTypes()
+<span class="del">-        .Where(type =&gt; type.IsSubclassOf(baseType));</span>
+<span class="add">+        .Where(type =&gt; type.IsSubclassOf(baseType)</span>
+<span class="add">+            &amp;&amp; !type.ContainsGenericParameters);</span></pre></figure>
+          <a class="project-name" href="https://github.com/domaindrivendev/Swashbuckle.AspNetCore/pull/4245" target="_blank" rel="noopener">Swashbuckle.AspNetCore</a>
+          <p>Fixed five bugs in the Swagger and OpenAPI library for ASP.NET Core. All five merged, and the first three shipped in v11.0.0.</p>
+          <span class="tags">C# · open-source contribution</span>
         </li>
         <li>
           <figure class="console" aria-label="The merged change in StackExchange.Redis"><pre><span class="file">src/StackExchange.Redis/RedisBatch.cs</span>
@@ -216,8 +233,8 @@
         <h2 id="work-title">Projects and contributions</h2>
         <button type="button" class="close" data-close>Close</button>
         <nav class="jump" aria-label="Sections">
-          <a href="#work-contributions" data-jump>Contributions <span>12 merged</span></a>
-          <a href="#work-projects" data-jump>My projects <span>7</span></a>
+          <a href="#work-contributions" data-jump>Contributions <span>15 merged</span></a>
+          <a href="#work-projects" data-jump>My projects <span>8</span></a>
           <a href="#work-at-work" data-jump>At work <span>3</span></a>
         </nav>
       </header>
@@ -273,6 +290,19 @@
           <a class="more" href="https://github.com/TestableIO/System.IO.Abstractions/pull/1591" target="_blank" rel="noopener">See the pull request <span aria-hidden="true">&rarr;</span></a>
         </li>
         <li>
+          <a class="project-name" href="https://github.com/thomhurst/TUnit/pull/7799" target="_blank" rel="noopener">TUnit</a>
+          <p>Fixed a bug in TUnit, a testing framework for .NET: <code>IsEquivalentTo</code> could report an object as not equivalent to itself. Merged the same day, and shipped in v1.86.6.</p>
+          <details class="details">
+            <summary>Details</summary>
+            <ul class="highlights">
+              <li>The comparison never checked whether both sides were the same instance, so it read every member of one object twice. A getter that changes between reads, such as a counter or a clock, made the object differ from itself. Both comparison paths now return early for the same instance.</li>
+              <li>The same check fixed a false pass, where the cycle guard skipped an object it met for the second time. Tests for objects, collections and members, in both the source-generated and reflection modes, on .NET 10 and 11. The maintainer merged it about seven hours after I opened it.</li>
+            </ul>
+          </details>
+          <span class="tags">C# · .NET · open source</span>
+          <a class="more" href="https://github.com/thomhurst/TUnit/pull/7799" target="_blank" rel="noopener">See the pull request <span aria-hidden="true">&rarr;</span></a>
+        </li>
+        <li>
           <a class="project-name" href="https://github.com/dotansimha/graphql-code-generator/pull/11106" target="_blank" rel="noopener">graphql-code-generator</a>
           <p>Fixed two bugs in GraphQL Code Generator, which writes TypeScript types from GraphQL, both open since 2024: a file that didn't compile for a project with no queries yet, and enums typed as <code>null</code> in resolvers. Both merged.</p>
           <details class="details">
@@ -303,6 +333,21 @@
           <a class="more" href="https://github.com/authlib/authlib/pull/1026" target="_blank" rel="noopener">See #1026 <span aria-hidden="true">&rarr;</span></a>
         </li>
         <li>
+          <a class="project-name" href="https://github.com/tornadoweb/tornado/pull/3875" target="_blank" rel="noopener">Tornado</a>
+          <p>Fixed two bugs in Tornado, the Python web framework and networking library, open since 2015 and 2021: a <code>Vary</code> header on responses that never vary, and WSGI apps failing on an unusual <code>Host</code> header. Both merged.</p>
+          <details class="details">
+            <summary>Details</summary>
+            <ul class="highlights">
+              <li>Gzip support added <code>Vary: Accept-Encoding</code> to every response, so caches kept a separate copy per encoding even of images it never compresses. It now adds the header only for types it may compress. The issue had been open since 2015.</li>
+              <li>The WSGI adapter split the <code>Host</code> header on <code>:</code> and read the rest as a port, so a header such as <code>example.com:abc</code> raised an error and the client got no response, and an IPv6 host came out wrong. It now uses Tornado&#x27;s own host and port parser, with the extra tests a reviewer suggested.</li>
+              <li>Each case has a test that fails without the fix. The full suite passes on Python 3.12 and 3.14, and CI covers 3.11 to 3.15, free-threaded Python and PyPy.</li>
+            </ul>
+          </details>
+          <span class="tags">Python · web · open source</span>
+          <a class="more" href="https://github.com/tornadoweb/tornado/pull/3875" target="_blank" rel="noopener">See #3875 <span aria-hidden="true">&rarr;</span></a>
+          <a class="more" href="https://github.com/tornadoweb/tornado/pull/3865" target="_blank" rel="noopener">See #3865 <span aria-hidden="true">&rarr;</span></a>
+        </li>
+        <li>
           <a class="project-name" href="https://github.com/redis/redis-py/pull/4466" target="_blank" rel="noopener">redis-py</a>
           <p>Documented the connection pool limit and <code>BlockingConnectionPool</code> in redis-py, the Python client for Redis. Merged.</p>
           <details class="details">
@@ -320,82 +365,52 @@
       <h3 id="work-projects" tabindex="-1">My projects</h3>
       <ul class="projects">
         <li>
-          <a class="project-name" href="https://github.com/mohsinaliwork686-rgb/promptlint" target="_blank" rel="noopener">promptlint</a>
-          <p>A linter for LLM prompt templates.</p>
+          <a class="project-name" href="https://github.com/mohsinaliwork686-rgb/rotadesk" target="_blank" rel="noopener">rotadesk</a>
+          <p>Staff scheduling for small businesses: one app serving many of them, with each business&#x27;s staff and shifts kept apart.</p>
           <details class="details">
             <summary>Details</summary>
-            <figure class="console" aria-label="Real output from promptlint"><pre><span class="prompt">$ promptlint examples</span>
-examples/agent.py:4:20: error PL004 OpenAI API key found in prompt text (sk-p...44 chars)
-examples/agent.py:6:15: error PL002 template uses {max_words} but it is never supplied
-examples/classify.md:10:1: error PL001 '{"category": "&lt;one of the above&gt;", "c...' is not a valid placeholder
-
-Found 4 errors and 7 warnings in 3 files scanned. 3 fixable with --fix.</pre></figure>
+            <figure class="shot"><img src="assets/work/rotadesk.jpg" width="1120" height="467" loading="lazy" decoding="async" alt="rotadesk: a manager&#x27;s week at Northside Café, with each day&#x27;s shifts, a warning on a shift outside someone&#x27;s availability, an open shift, and everyone&#x27;s hours against their limit"></figure>
             <ul class="highlights">
-              <li>Finds the bugs that only show up in production: a JSON example that breaks <code>.format()</code>, a variable the code never passes, an API key left in a prompt, user input pasted straight into instructions.</li>
-              <li>Reads Python, YAML and Markdown, reports the exact line and column, and has an autofix that checks the text is still where it expects before changing anything.</li>
-              <li>No runtime dependencies. Tested on Linux, macOS and Windows across three Python versions.</li>
+              <li>Managers build and publish the week, staff set when they can work and swap shifts, and everyone affected gets an email. The rules, such as no overlapping shifts, weekly hours limits and a swap that needs the colleague and a manager, live in one domain layer, so no endpoint can skip them.</li>
+              <li>Businesses share tables, kept apart four ways: an EF Core filter on every tenant-owned table, a guard on every write, a test that fails if a table has no filter, and a suite that calls every endpoint as the other business. When two managers approve the same swap at once, one wins and the other gets a clear conflict.</li>
+              <li>Emails go through a transactional outbox, so a crash can&#x27;t lose one. 242 .NET tests run against real PostgreSQL in Testcontainers, plus 77 front end tests, in CI on Linux, Windows and macOS. The live demo runs on Render and Neon, with one-click sign-in.</li>
             </ul>
           </details>
-          <span class="tags">Python · static analysis</span>
-          <a class="more" href="https://github.com/mohsinaliwork686-rgb/promptlint#install" target="_blank" rel="noopener">Run it yourself <span aria-hidden="true">&rarr;</span></a>
+          <span class="tags">C# · ASP.NET Core · EF Core · PostgreSQL · React</span>
+          <a class="more" href="https://rotadesk.onrender.com" target="_blank" rel="noopener">Try it live <span aria-hidden="true">&rarr;</span></a>
+          <a class="more" href="https://github.com/mohsinaliwork686-rgb/rotadesk#try-it" target="_blank" rel="noopener">Run it yourself <span aria-hidden="true">&rarr;</span></a>
         </li>
         <li>
-          <a class="project-name" href="https://github.com/mohsinaliwork686-rgb/ragsweep" target="_blank" rel="noopener">ragsweep</a>
-          <p>Measures which retrieval settings actually find the right passage.</p>
+          <a class="project-name" href="https://github.com/mohsinaliwork686-rgb/semcache" target="_blank" rel="noopener">semcache</a>
+          <p>Caches model answers by meaning rather than exact wording, and measures exactly where that goes wrong.</p>
           <details class="details">
             <summary>Details</summary>
-            <figure class="console" aria-label="Real output from ragsweep"><pre><span class="prompt">$ ragsweep run</span>
-17 documents, 31 questions, 54 runs
-retriever  strategy  chunk  ovl   r@1   r@3   r@5  r@10   MRR
-dense      fixed       256    0  0.87  0.92  0.97  0.98  0.95  *
-hybrid     sentence    256    0  0.84  0.95  0.98  1.00  0.95
-bm25       fixed       256    0  0.68  0.92  0.94  1.00  0.84
-Best: dense / fixed / chunk 256 / overlap 0</pre></figure>
+            <figure class="shot"><img src="assets/work/semcache.png" width="1120" height="476" loading="lazy" decoding="async" alt="semcache&#x27;s benchmark for two embedding models: the share of questions answered right and wrong from the cache at each similarity threshold. Wrong answers remain even at 0.99"></figure>
             <ul class="highlights">
-              <li>Sweeps chunk size, overlap, embedding models and BM25 keyword search against a labelled question set, and ranks every combination.</li>
-              <li>On its example corpus, keyword search matched embeddings on four of five question types. Embeddings only pulled ahead when a question's wording did not match the document.</li>
-              <li>Shares work across the sweep, so 54 runs take 1m 41s the first time and 1.3s after that.</li>
+              <li>One decorator on an existing function. It checks the exact text first, never mixes answers between models or prompts, and if the cache fails the call still runs.</li>
+              <li>Stores in memory or in Redis 8 vector sets, where the search runs inside Redis. Both pass the same test suite, and their scores agree to within 0.000001.</li>
+              <li>Benchmarked on 250 labelled questions, written before any embedding code. "Orders over $35" and "under $35" score 0.995, so on one model every answer from the cache is wrong from a threshold of 0.96 up. Results are reported per kind of near-miss, so an average can't hide it.</li>
             </ul>
           </details>
-          <span class="tags">Python · embeddings · evaluation</span>
-          <a class="more" href="https://github.com/mohsinaliwork686-rgb/ragsweep#try-it-in-two-minutes" target="_blank" rel="noopener">Run it yourself <span aria-hidden="true">&rarr;</span></a>
+          <span class="tags">Python · embeddings · Redis</span>
+          <a class="more" href="https://github.com/mohsinaliwork686-rgb/semcache#what-the-benchmark-found" target="_blank" rel="noopener">See the results <span aria-hidden="true">&rarr;</span></a>
+          <a class="more" href="https://github.com/mohsinaliwork686-rgb/semcache#try-it" target="_blank" rel="noopener">Run it yourself <span aria-hidden="true">&rarr;</span></a>
         </li>
         <li>
-          <a class="project-name" href="https://github.com/mohsinaliwork686-rgb/contextlab" target="_blank" rel="noopener">contextlab</a>
-          <p>Plans a context window before it overflows.</p>
+          <a class="project-name" href="https://github.com/mohsinaliwork686-rgb/evalboard" target="_blank" rel="noopener">evalboard</a>
+          <p>Compares two eval runs of an AI system case by case, and shows exactly what got worse.</p>
           <details class="details">
             <summary>Details</summary>
-            <figure class="shot"><img src="assets/work/contextlab.jpg" width="1120" height="473" loading="lazy" decoding="async" alt="contextlab planning a request: tokens sent, cost, how much of the window is used, and which part of the prompt takes how much"></figure>
+            <figure class="shot"><img src="assets/work/evalboard.jpg" width="1120" height="461" loading="lazy" decoding="async" alt="evalboard comparing two runs: 5 cases regressed while the mean score rose from 0.710 to 0.740, with a bar chart of every case&#x27;s change"></figure>
             <ul class="highlights">
-              <li>Shows what fits in a model's window, what each part of the request costs, and exactly where an over-long request gets cut.</li>
-              <li>Runs entirely in the browser. Token counts that are estimates are labelled as estimates, never passed off as exact.</li>
-              <li>Any setup can be shared as a compressed link.</li>
+              <li>Puts regressions first, then fixes, then every score that moved, with a chart and a tag filter that make a cluster of failures stand out where the average hides it.</li>
+              <li>Reads the results file ragsweep writes. On ragsweep's real runs, doubling the chunk size broke two questions and fixed two others while the pass rate stayed at exactly 90.3%.</li>
+              <li>Runs entirely in the browser, and a browser test proves a loaded file is never sent anywhere. A bad file gets every problem listed with its exact place. CI on three operating systems, with browser tests at desktop and phone sizes.</li>
             </ul>
           </details>
-          <span class="tags">TypeScript · Next.js</span>
-          <a class="more" href="https://mohsinaliwork686-rgb.github.io/contextlab/" target="_blank" rel="noopener">Try it live <span aria-hidden="true">&rarr;</span></a>
-          <a class="more" href="https://github.com/mohsinaliwork686-rgb/contextlab#run-it" target="_blank" rel="noopener">Run it yourself <span aria-hidden="true">&rarr;</span></a>
-        </li>
-        <li>
-          <a class="project-name" href="https://github.com/mohsinaliwork686-rgb/llm-router" target="_blank" rel="noopener">llm-router</a>
-          <p>One endpoint for many language models, with a spending cap that holds under concurrent load.</p>
-          <details class="details">
-            <summary>Details</summary>
-            <figure class="console" aria-label="Real output from llm-router&#x27;s demo"><pre><span class="prompt">$ docker compose run --rm demo</span>
-1. Fallback: ask the "resilient" policy for an answer
-   x-router-model       budget
-   x-router-attempts    4
-2. The cap: ten expensive requests at the same moment
-   answered     3
-   refused      7  (HTTP 429, before reaching the model)</pre></figure>
-            <ul class="highlights">
-              <li>Speaks the OpenAI API, so an app adopts it by changing its base URL. Routes each request by policy and falls back when a provider fails: retries what can recover, skips a revoked key, and stops on a request every model would refuse.</li>
-              <li>Reserves each call's worst-case cost before it starts, in one atomic step in Redis, so several routers share one cap. In the demo, ten simultaneous $0.30 requests against a $1 cap: three answered, seven refused before reaching a model.</li>
-              <li>236 tests, including a deliberately racy store that the concurrency test is shown to catch. CI on Python 3.11 to 3.14 with a real Redis, on macOS and Windows, and the Docker demo itself.</li>
-            </ul>
-          </details>
-          <span class="tags">Python · FastAPI · Redis</span>
-          <a class="more" href="https://github.com/mohsinaliwork686-rgb/llm-router#try-it-in-a-minute-with-no-api-keys" target="_blank" rel="noopener">Run it yourself <span aria-hidden="true">&rarr;</span></a>
+          <span class="tags">TypeScript · Next.js · Recharts</span>
+          <a class="more" href="https://mohsinaliwork686-rgb.github.io/evalboard/" target="_blank" rel="noopener">Try it live <span aria-hidden="true">&rarr;</span></a>
+          <a class="more" href="https://github.com/mohsinaliwork686-rgb/evalboard#run-it" target="_blank" rel="noopener">Run it yourself <span aria-hidden="true">&rarr;</span></a>
         </li>
         <li>
           <a class="project-name" href="https://github.com/mohsinaliwork686-rgb/helmdrift" target="_blank" rel="noopener">helmdrift</a>
@@ -420,36 +435,82 @@ Deployment/shop-web
           <a class="more" href="https://github.com/mohsinaliwork686-rgb/helmdrift#install" target="_blank" rel="noopener">Run it yourself <span aria-hidden="true">&rarr;</span></a>
         </li>
         <li>
-          <a class="project-name" href="https://github.com/mohsinaliwork686-rgb/evalboard" target="_blank" rel="noopener">evalboard</a>
-          <p>Compares two eval runs of an AI system case by case, and shows exactly what got worse.</p>
+          <a class="project-name" href="https://github.com/mohsinaliwork686-rgb/llm-router" target="_blank" rel="noopener">llm-router</a>
+          <p>One endpoint for many language models, with a spending cap that holds under concurrent load.</p>
           <details class="details">
             <summary>Details</summary>
-            <figure class="shot"><img src="assets/work/evalboard.jpg" width="1120" height="461" loading="lazy" decoding="async" alt="evalboard comparing two runs: 5 cases regressed while the mean score rose from 0.710 to 0.740, with a bar chart of every case&#x27;s change"></figure>
+            <figure class="console" aria-label="Real output from llm-router&#x27;s demo"><pre><span class="prompt">$ docker compose run --rm demo</span>
+1. Fallback: ask the "resilient" policy for an answer
+   x-router-model       budget
+   x-router-attempts    4
+2. The cap: ten expensive requests at the same moment
+   answered     3
+   refused      7  (HTTP 429, before reaching the model)</pre></figure>
             <ul class="highlights">
-              <li>Puts regressions first, then fixes, then every score that moved, with a chart and a tag filter that make a cluster of failures stand out where the average hides it.</li>
-              <li>Reads the results file ragsweep writes. On ragsweep's real runs, doubling the chunk size broke two questions and fixed two others while the pass rate stayed at exactly 90.3%.</li>
-              <li>Runs entirely in the browser, and a browser test proves a loaded file is never sent anywhere. A bad file gets every problem listed with its exact place. CI on three operating systems, with browser tests at desktop and phone sizes.</li>
+              <li>Speaks the OpenAI API, so an app adopts it by changing its base URL. Routes each request by policy and falls back when a provider fails: retries what can recover, skips a revoked key, and stops on a request every model would refuse.</li>
+              <li>Reserves each call's worst-case cost before it starts, in one atomic step in Redis, so several routers share one cap. In the demo, ten simultaneous $0.30 requests against a $1 cap: three answered, seven refused before reaching a model.</li>
+              <li>236 tests, including a deliberately racy store that the concurrency test is shown to catch. CI on Python 3.11 to 3.14 with a real Redis, on macOS and Windows, and the Docker demo itself.</li>
             </ul>
           </details>
-          <span class="tags">TypeScript · Next.js · Recharts</span>
-          <a class="more" href="https://mohsinaliwork686-rgb.github.io/evalboard/" target="_blank" rel="noopener">Try it live <span aria-hidden="true">&rarr;</span></a>
-          <a class="more" href="https://github.com/mohsinaliwork686-rgb/evalboard#run-it" target="_blank" rel="noopener">Run it yourself <span aria-hidden="true">&rarr;</span></a>
+          <span class="tags">Python · FastAPI · Redis</span>
+          <a class="more" href="https://github.com/mohsinaliwork686-rgb/llm-router#try-it-in-a-minute-with-no-api-keys" target="_blank" rel="noopener">Run it yourself <span aria-hidden="true">&rarr;</span></a>
         </li>
         <li>
-          <a class="project-name" href="https://github.com/mohsinaliwork686-rgb/semcache" target="_blank" rel="noopener">semcache</a>
-          <p>Caches model answers by meaning rather than exact wording, and measures exactly where that goes wrong.</p>
+          <a class="project-name" href="https://github.com/mohsinaliwork686-rgb/contextlab" target="_blank" rel="noopener">contextlab</a>
+          <p>Plans a context window before it overflows.</p>
           <details class="details">
             <summary>Details</summary>
-            <figure class="shot"><img src="assets/work/semcache.png" width="1120" height="476" loading="lazy" decoding="async" alt="semcache&#x27;s benchmark for two embedding models: the share of questions answered right and wrong from the cache at each similarity threshold. Wrong answers remain even at 0.99"></figure>
+            <figure class="shot"><img src="assets/work/contextlab.jpg" width="1120" height="473" loading="lazy" decoding="async" alt="contextlab planning a request: tokens sent, cost, how much of the window is used, and which part of the prompt takes how much"></figure>
             <ul class="highlights">
-              <li>One decorator on an existing function. It checks the exact text first, never mixes answers between models or prompts, and if the cache fails the call still runs.</li>
-              <li>Stores in memory or in Redis 8 vector sets, where the search runs inside Redis. Both pass the same test suite, and their scores agree to within 0.000001.</li>
-              <li>Benchmarked on 250 labelled questions, written before any embedding code. "Orders over $35" and "under $35" score 0.995, so on one model every answer from the cache is wrong from a threshold of 0.96 up. Results are reported per kind of near-miss, so an average can't hide it.</li>
+              <li>Shows what fits in a model's window, what each part of the request costs, and exactly where an over-long request gets cut.</li>
+              <li>Runs entirely in the browser. Token counts that are estimates are labelled as estimates, never passed off as exact.</li>
+              <li>Any setup can be shared as a compressed link.</li>
             </ul>
           </details>
-          <span class="tags">Python · embeddings · Redis</span>
-          <a class="more" href="https://github.com/mohsinaliwork686-rgb/semcache#what-the-benchmark-found" target="_blank" rel="noopener">See the results <span aria-hidden="true">&rarr;</span></a>
-          <a class="more" href="https://github.com/mohsinaliwork686-rgb/semcache#try-it" target="_blank" rel="noopener">Run it yourself <span aria-hidden="true">&rarr;</span></a>
+          <span class="tags">TypeScript · Next.js</span>
+          <a class="more" href="https://mohsinaliwork686-rgb.github.io/contextlab/" target="_blank" rel="noopener">Try it live <span aria-hidden="true">&rarr;</span></a>
+          <a class="more" href="https://github.com/mohsinaliwork686-rgb/contextlab#run-it" target="_blank" rel="noopener">Run it yourself <span aria-hidden="true">&rarr;</span></a>
+        </li>
+        <li>
+          <a class="project-name" href="https://github.com/mohsinaliwork686-rgb/ragsweep" target="_blank" rel="noopener">ragsweep</a>
+          <p>Measures which retrieval settings actually find the right passage.</p>
+          <details class="details">
+            <summary>Details</summary>
+            <figure class="console" aria-label="Real output from ragsweep"><pre><span class="prompt">$ ragsweep run</span>
+17 documents, 31 questions, 54 runs
+retriever  strategy  chunk  ovl   r@1   r@3   r@5  r@10   MRR
+dense      fixed       256    0  0.87  0.92  0.97  0.98  0.95  *
+hybrid     sentence    256    0  0.84  0.95  0.98  1.00  0.95
+bm25       fixed       256    0  0.68  0.92  0.94  1.00  0.84
+Best: dense / fixed / chunk 256 / overlap 0</pre></figure>
+            <ul class="highlights">
+              <li>Sweeps chunk size, overlap, embedding models and BM25 keyword search against a labelled question set, and ranks every combination.</li>
+              <li>On its example corpus, keyword search matched embeddings on four of five question types. Embeddings only pulled ahead when a question's wording did not match the document.</li>
+              <li>Shares work across the sweep, so 54 runs take 1m 41s the first time and 1.3s after that.</li>
+            </ul>
+          </details>
+          <span class="tags">Python · embeddings · evaluation</span>
+          <a class="more" href="https://github.com/mohsinaliwork686-rgb/ragsweep#try-it-in-two-minutes" target="_blank" rel="noopener">Run it yourself <span aria-hidden="true">&rarr;</span></a>
+        </li>
+        <li>
+          <a class="project-name" href="https://github.com/mohsinaliwork686-rgb/promptlint" target="_blank" rel="noopener">promptlint</a>
+          <p>A linter for LLM prompt templates.</p>
+          <details class="details">
+            <summary>Details</summary>
+            <figure class="console" aria-label="Real output from promptlint"><pre><span class="prompt">$ promptlint examples</span>
+examples/agent.py:4:20: error PL004 OpenAI API key found in prompt text (sk-p...44 chars)
+examples/agent.py:6:15: error PL002 template uses {max_words} but it is never supplied
+examples/classify.md:10:1: error PL001 '{"category": "&lt;one of the above&gt;", "c...' is not a valid placeholder
+
+Found 4 errors and 7 warnings in 3 files scanned. 3 fixable with --fix.</pre></figure>
+            <ul class="highlights">
+              <li>Finds the bugs that only show up in production: a JSON example that breaks <code>.format()</code>, a variable the code never passes, an API key left in a prompt, user input pasted straight into instructions.</li>
+              <li>Reads Python, YAML and Markdown, reports the exact line and column, and has an autofix that checks the text is still where it expects before changing anything.</li>
+              <li>No runtime dependencies. Tested on Linux, macOS and Windows across three Python versions.</li>
+            </ul>
+          </details>
+          <span class="tags">Python · static analysis</span>
+          <a class="more" href="https://github.com/mohsinaliwork686-rgb/promptlint#install" target="_blank" rel="noopener">Run it yourself <span aria-hidden="true">&rarr;</span></a>
         </li>
       </ul>
 
@@ -609,10 +670,11 @@ Deployment/shop-web
         <li><a href="https://github.com/mohsinaliwork686-rgb/helmdrift" target="_blank" rel="noopener">helmdrift</a> <span>finds hand-made changes in a cluster, and who made them</span></li>
         <li><a href="https://github.com/mohsinaliwork686-rgb/evalboard" target="_blank" rel="noopener">evalboard</a> <span>compares two eval runs and shows what got worse</span></li>
         <li><a href="https://github.com/mohsinaliwork686-rgb/semcache" target="_blank" rel="noopener">semcache</a> <span>caches model answers by meaning, and shows where that goes wrong</span></li>
+        <li><a href="https://github.com/mohsinaliwork686-rgb/rotadesk" target="_blank" rel="noopener">rotadesk</a> <span>staff scheduling for small businesses, in .NET, with a live demo</span></li>
       </ul>
 
       <h3>Up next</h3>
-      <p><strong>Two .NET projects</strong> — a scheduling app for small businesses, and a service that delivers webhooks reliably, in the stack I use at work.</p>
+      <p><strong>hookline</strong>, a .NET service that delivers webhooks reliably: each event is stored first, signed, retried with backoff, and set aside for a person to look at after the last attempt.</p>
     </div>
   </dialog>
 

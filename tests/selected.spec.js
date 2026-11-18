@@ -7,9 +7,11 @@ test("selected work is on the page without pressing a key", async ({ page }) => 
   const section = page.locator("section.selected")
   await expect(section.getByRole("heading", { name: "Selected work" })).toBeVisible()
   expect(await section.locator(".project-name").allTextContents()).toEqual([
+    "rotadesk",
     "llm-router",
     "evalboard",
     "semcache",
+    "Swashbuckle.AspNetCore",
     "StackExchange.Redis",
   ])
   for (const link of await section.locator("a.project-name").all()) {
@@ -55,7 +57,7 @@ test("project images have alt text, load lazily and actually load", async ({ pag
   await page.goto("/")
   await openWorkWithDetails(page)
   const images = page.locator(".shot img")
-  expect(await images.count()).toBe(5)
+  expect(await images.count()).toBe(7)
   for (const image of await images.all()) {
     await expect(image).toHaveAttribute("alt", /.{20,}/)
     await expect(image).toHaveAttribute("loading", "lazy")
@@ -92,7 +94,7 @@ test("every project of mine links to the steps for running it", async ({ page })
       checked++
     }
   }
-  expect(checked).toBe(10)
+  expect(checked).toBe(12)
 })
 
 test("every project in the work section is a complete entry in a list", async ({ page }) => {
@@ -112,7 +114,7 @@ test("work cards stay short, with the highlights one click away", async ({ page 
   await page.locator('section.selected button[data-open="work"]').click()
   const dialog = page.locator("dialog#work")
   const details = dialog.locator(".projects > li > .details")
-  expect(await details.count()).toBe(13)
+  expect(await details.count()).toBe(16)
   for (const d of await details.all()) await expect(d).not.toHaveAttribute("open", "")
   await expect(dialog.locator(".highlights").first()).toBeHidden()
 
