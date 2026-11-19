@@ -233,7 +233,7 @@
         <h2 id="work-title">Projects and contributions</h2>
         <button type="button" class="close" data-close>Close</button>
         <nav class="jump" aria-label="Sections">
-          <a href="#work-contributions" data-jump>Contributions <span>15 merged</span></a>
+          <a href="#work-contributions" data-jump>Contributions <span>16 merged</span></a>
           <a href="#work-projects" data-jump>My projects <span>8</span></a>
           <a href="#work-at-work" data-jump>At work <span>3</span></a>
         </nav>
@@ -301,6 +301,19 @@
           </details>
           <span class="tags">C# · .NET · open source</span>
           <a class="more" href="https://github.com/thomhurst/TUnit/pull/7799" target="_blank" rel="noopener">See the pull request <span aria-hidden="true">&rarr;</span></a>
+        </li>
+        <li>
+          <a class="project-name" href="https://github.com/umbraco/Umbraco-CMS/pull/24662" target="_blank" rel="noopener">Umbraco</a>
+          <p>Fixed a bug in Umbraco, the open-source .NET content management system: creating a multilingual document through its Management API without any language variants failed with a 500 instead of a 400. Merged the day after I opened it, for versions 17.10, 18.5 and 19.1.</p>
+          <details class="details">
+            <summary>Details</summary>
+            <ul class="highlights">
+              <li>Validation let a document or blueprint of a language-varying type through with no variants, then the save failed, so the API returned a server error. Creating one now gets the same 400 that a type without languages gets, and updates can still leave the variants out. I agreed the approach with the maintainers on the issue first and fixed it on the long-term support branch, which they merge into the newer versions.</li>
+              <li>Tests for documents and blueprints that fail without the fix. The maintainer added a check for blank names and more tests on top, asked me to review them, then approved and merged it.</li>
+            </ul>
+          </details>
+          <span class="tags">C# · .NET · open source</span>
+          <a class="more" href="https://github.com/umbraco/Umbraco-CMS/pull/24662" target="_blank" rel="noopener">See the pull request <span aria-hidden="true">&rarr;</span></a>
         </li>
         <li>
           <a class="project-name" href="https://github.com/dotansimha/graphql-code-generator/pull/11106" target="_blank" rel="noopener">graphql-code-generator</a>

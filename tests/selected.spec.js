@@ -114,7 +114,7 @@ test("work cards stay short, with the highlights one click away", async ({ page 
   await page.locator('section.selected button[data-open="work"]').click()
   const dialog = page.locator("dialog#work")
   const details = dialog.locator(".projects > li > .details")
-  expect(await details.count()).toBe(16)
+  expect(await details.count()).toBe(17)
   for (const d of await details.all()) await expect(d).not.toHaveAttribute("open", "")
   await expect(dialog.locator(".highlights").first()).toBeHidden()
 
