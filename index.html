@@ -234,7 +234,7 @@
         <button type="button" class="close" data-close>Close</button>
         <nav class="jump" aria-label="Sections">
           <a href="#work-contributions" data-jump>Contributions <span>16 merged</span></a>
-          <a href="#work-projects" data-jump>My projects <span>8</span></a>
+          <a href="#work-projects" data-jump>My projects <span>9</span></a>
           <a href="#work-at-work" data-jump>At work <span>3</span></a>
         </nav>
       </header>
@@ -377,6 +377,21 @@
 
       <h3 id="work-projects" tabindex="-1">My projects</h3>
       <ul class="projects">
+        <li>
+          <a class="project-name" href="https://github.com/mohsinaliwork686-rgb/hookline" target="_blank" rel="noopener">hookline</a>
+          <p>Delivers webhooks reliably, even when the receiver is down: each event is stored first, signed, retried with backoff, and set aside for a person to look at after the last attempt.</p>
+          <details class="details">
+            <summary>Details</summary>
+            <figure class="shot"><img src="assets/work/hookline.jpg" width="1120" height="467" loading="lazy" decoding="async" alt="hookline&#x27;s dashboard: deliveries to five demo receivers, some delivered first time, some after three attempts, and dead ones that timed out or kept answering 500, each with a Send again button"></figure>
+            <ul class="highlights">
+              <li>Workers share PostgreSQL with <code>FOR UPDATE SKIP LOCKED</code> and a lease, so any number can run without two sending the same delivery at once, and a worker that dies mid-send just lets its lease run out. Each keeps up to ten requests in flight, so a receiver that hangs holds up only its own delivery.</li>
+              <li>Every attempt is signed the Standard Webhooks way, checked against the reference library&#x27;s fixed example. A <code>410</code> disables the subscription, <code>Retry-After</code> is honoured up to a cap, and redirects aren&#x27;t followed. A Razor Pages dashboard shows each attempt and sends dead letters again.</li>
+              <li>109 tests against real PostgreSQL and a real HTTP receiver, with a fake clock for the three-day retry schedule. I broke the worker 16 ways to check that the tests catch each break. <code>docker compose up</code> runs a receiver that fails, hangs and answers <code>410</code> on purpose.</li>
+            </ul>
+          </details>
+          <span class="tags">C# · ASP.NET Core · EF Core · PostgreSQL · Docker</span>
+          <a class="more" href="https://github.com/mohsinaliwork686-rgb/hookline#try-it" target="_blank" rel="noopener">Run it yourself <span aria-hidden="true">&rarr;</span></a>
+        </li>
         <li>
           <a class="project-name" href="https://github.com/mohsinaliwork686-rgb/rotadesk" target="_blank" rel="noopener">rotadesk</a>
           <p>Staff scheduling for small businesses: one app serving many of them, with each business&#x27;s staff and shifts kept apart.</p>
@@ -684,10 +699,11 @@ Found 4 errors and 7 warnings in 3 files scanned. 3 fixable with --fix.</pre></f
         <li><a href="https://github.com/mohsinaliwork686-rgb/evalboard" target="_blank" rel="noopener">evalboard</a> <span>compares two eval runs and shows what got worse</span></li>
         <li><a href="https://github.com/mohsinaliwork686-rgb/semcache" target="_blank" rel="noopener">semcache</a> <span>caches model answers by meaning, and shows where that goes wrong</span></li>
         <li><a href="https://github.com/mohsinaliwork686-rgb/rotadesk" target="_blank" rel="noopener">rotadesk</a> <span>staff scheduling for small businesses, in .NET, with a live demo</span></li>
+        <li><a href="https://github.com/mohsinaliwork686-rgb/hookline" target="_blank" rel="noopener">hookline</a> <span>delivers webhooks reliably, in .NET, retried and signed</span></li>
       </ul>
 
       <h3>Up next</h3>
-      <p><strong>hookline</strong>, a .NET service that delivers webhooks reliably: each event is stored first, signed, retried with backoff, and set aside for a person to look at after the last attempt.</p>
+      <p><strong>grounded</strong>, a question-answering app over your own documents where every sentence of an answer carries a citation, and a sentence its sources don&#x27;t support is not shown.</p>
     </div>
   </dialog>
 
