@@ -233,7 +233,7 @@
         <h2 id="work-title">Projects and contributions</h2>
         <button type="button" class="close" data-close>Close</button>
         <nav class="jump" aria-label="Sections">
-          <a href="#work-contributions" data-jump>Contributions <span>16 merged</span></a>
+          <a href="#work-contributions" data-jump>Contributions <span>17 merged</span></a>
           <a href="#work-projects" data-jump>My projects <span>9</span></a>
           <a href="#work-at-work" data-jump>At work <span>3</span></a>
         </nav>
@@ -317,18 +317,20 @@
         </li>
         <li>
           <a class="project-name" href="https://github.com/dotansimha/graphql-code-generator/pull/11106" target="_blank" rel="noopener">graphql-code-generator</a>
-          <p>Fixed two bugs in GraphQL Code Generator, which writes TypeScript types from GraphQL, both open since 2024: a file that didn't compile for a project with no queries yet, and enums typed as <code>null</code> in resolvers. Both merged.</p>
+          <p>Fixed three bugs in GraphQL Code Generator, which writes TypeScript types from GraphQL: a file that didn't compile for a project with no queries yet and enums typed as <code>null</code> in resolvers, both open since 2024, and utility types written above the file's imports. All three merged.</p>
           <details class="details">
             <summary>Details</summary>
             <ul class="highlights">
               <li>The generator always wrote the <code>TypedDocumentString</code> class, but dropped the import it needs when there were no documents. It now keeps the import whenever it writes the class. The issue had been open since 2024.</li>
               <li>Compiled the whole generated output with <code>tsc --strict</code> on five configurations: each went from three errors to none, and the output of every other mode stayed identical. Merged the next day and shipped the same day in <code>client-preset</code> 7.0.0.</li>
               <li>An enum that <code>enumValues</code> maps to an object came out as <code>null</code> in the resolver types, so its resolvers could only return <code>null</code>. It now uses the generated enum, with the prefix and namespace options respected. Two of the new tests compile the output under strict TypeScript, which is how the <code>null</code> had slipped past the existing ones. Merged two days after opening and shipped the same day in <code>typescript-resolvers</code> 7.0.1.</li>
+              <li>A comment added above two utility types made the generator&#x27;s sorting treat them as a file header, so they were written above every import, even imports from other plugins. They now come right after the imports. Approved by the maintainer and shipped the same day in <code>typescript-operations</code> 7.0.2.</li>
             </ul>
           </details>
           <span class="tags">TypeScript · GraphQL · open source</span>
           <a class="more" href="https://github.com/dotansimha/graphql-code-generator/pull/11106" target="_blank" rel="noopener">See #11106 <span aria-hidden="true">&rarr;</span></a>
           <a class="more" href="https://github.com/dotansimha/graphql-code-generator/pull/11116" target="_blank" rel="noopener">See #11116 <span aria-hidden="true">&rarr;</span></a>
+          <a class="more" href="https://github.com/dotansimha/graphql-code-generator/pull/11120" target="_blank" rel="noopener">See #11120 <span aria-hidden="true">&rarr;</span></a>
         </li>
         <li>
           <a class="project-name" href="https://github.com/authlib/authlib/pull/1009" target="_blank" rel="noopener">Authlib</a>
