@@ -57,7 +57,7 @@ test("project images have alt text, load lazily and actually load", async ({ pag
   await page.goto("/")
   await openWorkWithDetails(page)
   const images = page.locator(".shot img")
-  expect(await images.count()).toBe(8)
+  expect(await images.count()).toBe(9)
   for (const image of await images.all()) {
     await expect(image).toHaveAttribute("alt", /.{20,}/)
     await expect(image).toHaveAttribute("loading", "lazy")
@@ -94,7 +94,7 @@ test("every project of mine links to the steps for running it", async ({ page })
       checked++
     }
   }
-  expect(checked).toBe(13)
+  expect(checked).toBe(14)
 })
 
 test("every project in the work section is a complete entry in a list", async ({ page }) => {
@@ -114,7 +114,7 @@ test("work cards stay short, with the highlights one click away", async ({ page 
   await page.locator('section.selected button[data-open="work"]').click()
   const dialog = page.locator("dialog#work")
   const details = dialog.locator(".projects > li > .details")
-  expect(await details.count()).toBe(18)
+  expect(await details.count()).toBe(19)
   for (const d of await details.all()) await expect(d).not.toHaveAttribute("open", "")
   await expect(dialog.locator(".highlights").first()).toBeHidden()
 

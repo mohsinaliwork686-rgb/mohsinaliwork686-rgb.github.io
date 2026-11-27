@@ -234,7 +234,7 @@
         <button type="button" class="close" data-close>Close</button>
         <nav class="jump" aria-label="Sections">
           <a href="#work-contributions" data-jump>Contributions <span>18 merged</span></a>
-          <a href="#work-projects" data-jump>My projects <span>9</span></a>
+          <a href="#work-projects" data-jump>My projects <span>10</span></a>
           <a href="#work-at-work" data-jump>At work <span>3</span></a>
         </nav>
       </header>
@@ -381,6 +381,22 @@
 
       <h3 id="work-projects" tabindex="-1">My projects</h3>
       <ul class="projects">
+        <li>
+          <a class="project-name" href="https://github.com/mohsinaliwork686-rgb/grounded" target="_blank" rel="noopener">grounded</a>
+          <p>Answers questions from your own documents: every sentence cites the passage it came from, a local model checks that the passage really says it, and when the documents don&#x27;t cover the question, it says so instead of guessing.</p>
+          <details class="details">
+            <summary>Details</summary>
+            <figure class="shot"><img src="assets/work/grounded.jpg" width="1120" height="467" loading="lazy" decoding="async" alt="grounded answering how long carbon frames are covered for: the first sentence, citing the warranty booklet, is marked Supported, and the second, which calls the 2-year frames standard frames, is marked Not supported, next to the cited passage and its score against the 0.55 refusal threshold"></figure>
+            <ul class="highlights">
+              <li>Each retrieved passage goes to Claude as its own document, so every part of the answer comes back with native citations to the passages it used, and nothing is parsed out of the prose. A small entailment model that runs on the CPU, <code>nli-deberta-v3-small</code>, then checks each sentence against the passages it cites, and the Next.js page marks it supported, not supported or uncited.</li>
+              <li>It refuses before calling the model when the best passage scores below 0.55. Both thresholds were measured on labelled data written before any code: on 47 questions, none of the 19 unanswerable ones got through and 2 of the 28 answerable ones were refused, and the checker&#x27;s 0.70 judged 50 of 52 sentence and passage pairs correctly.</li>
+              <li>With Claude at medium effort, every sentence was cited, and every sentence the checker flagged was true when I read it against the documents, so a flag means &quot;check this&quot;, not &quot;wrong&quot;. 83 API tests, the store against real PostgreSQL, and 17 web tests. <code>docker compose up</code> runs it, with or without an API key.</li>
+            </ul>
+          </details>
+          <span class="tags">Python · FastAPI · PostgreSQL · pgvector · Claude · Next.js</span>
+          <a class="more" href="https://github.com/mohsinaliwork686-rgb/grounded#what-the-measurements-found" target="_blank" rel="noopener">See the results <span aria-hidden="true">&rarr;</span></a>
+          <a class="more" href="https://github.com/mohsinaliwork686-rgb/grounded#try-it" target="_blank" rel="noopener">Run it yourself <span aria-hidden="true">&rarr;</span></a>
+        </li>
         <li>
           <a class="project-name" href="https://github.com/mohsinaliwork686-rgb/hookline" target="_blank" rel="noopener">hookline</a>
           <p>Delivers webhooks reliably, even when the receiver is down: each event is stored first, signed, retried with backoff, and set aside for a person to look at after the last attempt.</p>
@@ -704,10 +720,11 @@ Found 4 errors and 7 warnings in 3 files scanned. 3 fixable with --fix.</pre></f
         <li><a href="https://github.com/mohsinaliwork686-rgb/semcache" target="_blank" rel="noopener">semcache</a> <span>caches model answers by meaning, and shows where that goes wrong</span></li>
         <li><a href="https://github.com/mohsinaliwork686-rgb/rotadesk" target="_blank" rel="noopener">rotadesk</a> <span>staff scheduling for small businesses, in .NET, with a live demo</span></li>
         <li><a href="https://github.com/mohsinaliwork686-rgb/hookline" target="_blank" rel="noopener">hookline</a> <span>delivers webhooks reliably, in .NET, retried and signed</span></li>
+        <li><a href="https://github.com/mohsinaliwork686-rgb/grounded" target="_blank" rel="noopener">grounded</a> <span>answers from your own documents, every sentence cited and checked</span></li>
       </ul>
 
       <h3>Up next</h3>
-      <p><strong>grounded</strong>, a question-answering app over your own documents where every sentence of an answer carries a citation, and a sentence its sources don&#x27;t support is not shown.</p>
+      <p><strong>agent-trace</strong>, which records what an AI agent did, step by step: every tool call, retry and token on one timeline. In the same week, <strong>ci-timeline</strong>, which shows which CI step is actually making builds slow.</p>
     </div>
   </dialog>
 
