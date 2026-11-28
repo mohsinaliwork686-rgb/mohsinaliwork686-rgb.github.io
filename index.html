@@ -233,7 +233,7 @@
         <h2 id="work-title">Projects and contributions</h2>
         <button type="button" class="close" data-close>Close</button>
         <nav class="jump" aria-label="Sections">
-          <a href="#work-contributions" data-jump>Contributions <span>18 merged</span></a>
+          <a href="#work-contributions" data-jump>Contributions <span>20 merged</span></a>
           <a href="#work-projects" data-jump>My projects <span>10</span></a>
           <a href="#work-at-work" data-jump>At work <span>3</span></a>
         </nav>
@@ -278,16 +278,20 @@
         </li>
         <li>
           <a class="project-name" href="https://github.com/TestableIO/System.IO.Abstractions/pull/1591" target="_blank" rel="noopener">System.IO.Abstractions</a>
-          <p>Fixed a bug in System.IO.Abstractions, the .NET library for testing code that uses the file system: on Linux and macOS its mock file system named the root drive <code>/:\</code> and listed it twice. Merged, and shipped the same day in v23.0.1.</p>
+          <p>Fixed three bugs in System.IO.Abstractions, the .NET library for testing code that uses the file system: on Linux and macOS its mock file system named the root drive <code>/:\</code> and listed it twice, and rejected names made only of whitespace, which both systems allow; and a recursive delete removed locked files, a bug open since 2021. All three merged, and the first shipped the same day in v23.0.1.</p>
           <details class="details">
             <summary>Details</summary>
             <ul class="highlights">
               <li>A shortcut meant for one-letter drive names such as <code>C</code> also caught <code>/</code>, so the Unix root got a Windows-style name. It now applies to letters only, the same rule the real <code>DriveInfo</code> uses. The issue had been open since 2022.</li>
               <li>Two Unix-only tests that fail without the fix, and the full suite on .NET 8, 9, 10 and 11. The maintainer approved and merged it about half an hour after I opened it.</li>
+              <li><code>File.Delete</code> refused to delete a file whose sharing mode doesn&#x27;t allow deletion, but a recursive <code>Directory.Delete</code> removed it anyway. The files in the tree are now checked first, and a locked one stops the delete with the same error, before anything is removed. Two tests that fail without the fix, and one that makes sure files that allow deletion still go. Approved and merged three days after I opened it.</li>
+              <li>The mock treated a name made only of whitespace as empty on every platform, but .NET only does that on Windows. One new check keeps the Windows rule and lets Linux and macOS accept these names, in the five places that tested for it. 22 existing tests that asserted the Windows rule everywhere now run only on Windows, and the new Unix tests fail without the fix. Approved and merged minutes after the delete fix.</li>
             </ul>
           </details>
           <span class="tags">C# · .NET · open source</span>
-          <a class="more" href="https://github.com/TestableIO/System.IO.Abstractions/pull/1591" target="_blank" rel="noopener">See the pull request <span aria-hidden="true">&rarr;</span></a>
+          <a class="more" href="https://github.com/TestableIO/System.IO.Abstractions/pull/1591" target="_blank" rel="noopener">See #1591 <span aria-hidden="true">&rarr;</span></a>
+          <a class="more" href="https://github.com/TestableIO/System.IO.Abstractions/pull/1607" target="_blank" rel="noopener">See #1607 <span aria-hidden="true">&rarr;</span></a>
+          <a class="more" href="https://github.com/TestableIO/System.IO.Abstractions/pull/1608" target="_blank" rel="noopener">See #1608 <span aria-hidden="true">&rarr;</span></a>
         </li>
         <li>
           <a class="project-name" href="https://github.com/thomhurst/TUnit/pull/7799" target="_blank" rel="noopener">TUnit</a>
